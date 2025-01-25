@@ -7,6 +7,9 @@ public class CameraMovement : MonoBehaviour
 
     [SerializeField] private Transform[] camPoints;
 
+    [SerializeField] private GameObject player;
+    [SerializeField] private Transform[] pPoints; //Player points
+
     private int target = 3;
 
     int speed = 5;
@@ -16,6 +19,7 @@ public class CameraMovement : MonoBehaviour
     void Start()
     {
         transform.position = camPoints[target].position;
+        player.transform.position = pPoints[target].position;
         //StartCoroutine(MoveCam(target));
 
     }
@@ -35,12 +39,14 @@ public class CameraMovement : MonoBehaviour
     public void MoveLeft()
     {
         target--;
+        player.transform.position = pPoints[target].position;
         StartCoroutine(MoveCam(target));
     }
 
     public void MoveRight()
     {
         target++;
+        player.transform.position = pPoints[target].position;
         StartCoroutine(MoveCam(target));
     }
 
