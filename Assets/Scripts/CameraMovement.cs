@@ -7,7 +7,7 @@ public class CameraMovement : MonoBehaviour
 
     [SerializeField] private Transform[] camPoints;
 
-    [SerializeField] private int target;
+    private int target = 3;
 
     int speed = 5;
 
@@ -15,7 +15,8 @@ public class CameraMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(MoveCam(target));
+        transform.position = camPoints[target].position;
+        //StartCoroutine(MoveCam(target));
 
     }
 
@@ -27,18 +28,22 @@ public class CameraMovement : MonoBehaviour
         //Then camera will slideeeeee over to the new point.
         //make a mini cool down so they can't spam it and potentialy break.
 
-        if (Input.GetMouseButtonDown(0) && target < camPoints.Length)
-        {
-            target++;
-            StartCoroutine(MoveCam(target));
-        }else if (Input.GetMouseButtonDown(1) && target > 0)
-        {
-            target--;
-            StartCoroutine(MoveCam(target));
-        }
 
 
     }
+
+    public void MoveLeft()
+    {
+        target--;
+        StartCoroutine(MoveCam(target));
+    }
+
+    public void MoveRight()
+    {
+        target++;
+        StartCoroutine(MoveCam(target));
+    }
+
 
 
     IEnumerator MoveCam(int t)
