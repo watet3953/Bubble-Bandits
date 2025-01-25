@@ -38,6 +38,7 @@ public class StatusEffect : CardAbility
         }
         yield return new WaitForSeconds(statusDuration);
         effectRadius.enabled = false;
+        cardMain.currentState = Card.CardStates.Discarded;
     }
 
     private void OnTriggerEnter(Collider other)

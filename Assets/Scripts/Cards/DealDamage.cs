@@ -13,8 +13,10 @@ public class DealDamage : CardAbility
 
         foreach (Enemy enemy in enemies)
         {
-            // deal damage
+            enemy.takeDamage(damage);
         }
+
+        cardMain.currentState = Card.CardStates.Discarded;
     }
 
     private void OnTriggerEnter(Collider other)
