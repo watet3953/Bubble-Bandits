@@ -41,15 +41,20 @@ public class Enemy : MonoBehaviour
             yield return new WaitForSeconds(wait);
         }
 
+        //will move the enemy to the next room if there is an open spot.
+        //if there isn't then it will stay in the same room.
         if (startRoom > 0)
         {
             startRoom--;
+           
         }
-        else
+
+        if(startRoom == 0)
         {
             Debug.Log("Deal Bubble Damage");
             bubbleDamageDealt += bDamage;
         }
+
         //Deal Damage
         Debug.Log("Damage Dealt");
         timeLimit = maxTime;
@@ -64,7 +69,4 @@ public class Enemy : MonoBehaviour
         }
         
     }
-
-
-
 }
