@@ -109,4 +109,11 @@ public class Enemy : MonoBehaviour
         }
         
     }
+
+
+    public void takeDamage(int d)
+    {
+        health -= d;
+    }
+
 }
