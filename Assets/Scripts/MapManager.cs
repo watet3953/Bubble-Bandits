@@ -18,10 +18,11 @@ public class MapManager : MonoBehaviour
     }
     #endregion Singleton
 
-    public void StartRound()
+    public void StartRound(MapButton data)
     {
         // do shit that hides the UI.
         // reset the player.
+        TrainManager.Instance.StartRound(data.enemies);
     }
 
 }
