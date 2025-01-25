@@ -70,5 +70,10 @@ public class TrainManager : MonoBehaviour
     //The restock will take 5 seconds to complete
     //When it is complete, the player will get rid of their current hand and draw a new hand.
 
-
+    /// <summary> Starts a round with the provided kinds of enemies. </summary>
+    /// <param name="enemyCount"> An array of enemies to add for this round, index corresponds to enemy type (make sure to define this somewhere). </param>
+    public void StartRound(int[] enemyCount)
+    {
+        // make sure to reset the train-side stuff like player, also probably reset the hand.
+    }
 }

@@ -18,4 +18,10 @@ public class MapManager : MonoBehaviour
     }
     #endregion Singleton
 
+    public void StartRound()
+    {
+        // do shit that hides the UI.
+        // reset the player.
+    }
+
 }
