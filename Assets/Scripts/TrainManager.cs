@@ -1,11 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MapManager : MonoBehaviour
+public class TrainManager : MonoBehaviour
 {
     #region Singleton
-    public static MapManager Instance;
+    public static TrainManager Instance;
 
     private void Awake()
     {
@@ -17,5 +18,6 @@ public class MapManager : MonoBehaviour
         Instance = this;
     }
     #endregion Singleton
+
 
 }
