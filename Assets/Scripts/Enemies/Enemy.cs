@@ -7,35 +7,62 @@ public class Enemy : MonoBehaviour
     private int maxHealth;
     [SerializeField] private int health;
 
-    private int startRoom;
+    [SerializeField] private int startRoom;
+
+    private float maxTime = 5f;
+    [SerializeField] private float timeLimit = 5f;
+
+    [SerializeField] private int bubbleDamageDealt = 0;
+
+    private int tDamage = 3; //Damage dealt to train
+    private int bDamage = 2; //Damage dealt to Bubble Supply
 
     // Start is called before the first frame update
     void Start()
     {
         startRoom = Random.Range(1,3);
+        StartCoroutine(Timer());
     }
 
     // Update is called once per frame
     void Update()
     {
-        //There is one timer that will control how the enemy works.
-        //It will be the time that the enemy will be in the cart before dealing damage and moving on
 
-        //The enemy will be in the cart for 5 seconds and then deal 3 damage to the train.
-
-        //Once the enemy deals the damage, it will move to the next room if it has the room (max 3 per car, 2 for storage)
-
-        //Once the enemy is in the storage room and deals damage, it will deal 2 bubble supply damage.
-
-        //Once the enemy has delt 6 bubble damage, it will leave the train.
 
     }
 
 
-    IEnumerator Timer()
+    IEnumerator Timer(float wait = 0.1f, float less = 0.1f)
     {
 
-        return null;
+        while (timeLimit > 0)
+        {
+            timeLimit -= less;
+            yield return new WaitForSeconds(wait);
+        }
+
+        if (startRoom > 0)
+        {
+            startRoom--;
+        }
+        else
+        {
+            Debug.Log("Deal Bubble Damage");
+            bubbleDamageDealt += bDamage;
+        }
+        //Deal Damage
+        Debug.Log("Damage Dealt");
+        timeLimit = maxTime;
+
+        if (bubbleDamageDealt < 6)
+        {
+            StartCoroutine(Timer());
+        }
+        else
+        {
+            Debug.Log("Bubble Bandit had Left");
+        }
+        
     }
 
 
