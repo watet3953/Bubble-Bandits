@@ -11,6 +11,9 @@ public class TrainManager : MonoBehaviour
 
     private int maxTHealth = 100; //The maxBSupply and maxTHealth are the same number
 
+    //Forgive me for a bad kind of coding here :)
+    [SerializeField] private TrainCar[] trainCars;
+
 
     #region Singleton
     public static TrainManager Instance;

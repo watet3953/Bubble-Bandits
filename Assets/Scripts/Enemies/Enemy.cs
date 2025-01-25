@@ -46,6 +46,10 @@ public class Enemy : MonoBehaviour
         if (startRoom > 0)
         {
             startRoom--;
+
+            //Are we having them jump or move?
+
+
             //Deal Damage
             TrainManager.Instance.tHealth -= tDamage;
         }
