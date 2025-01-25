@@ -390,7 +390,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1512401219}
   m_Father: {fileID: 2063496721}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -403,6 +404,160 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 651388352271269282, guid: 32de599507643774ba10ff1c4a765fe6, type: 3}
   m_PrefabInstance: {fileID: 3894696476168125048}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1512401218
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1512401219}
+  - component: {fileID: 1512401221}
+  - component: {fileID: 1512401220}
+  m_Layer: 5
+  m_Name: Hand
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1512401219
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1512401218}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1408428554}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1512401220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1512401218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dab5c7d4c32e743048dfca98e2d5914f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Spline:
+    m_EditModeType: 1
+    m_Knots: []
+    m_MetaData: []
+    m_Closed: 0
+    m_IntData:
+      m_Data: []
+    m_FloatData:
+      m_Data: []
+    m_Float4Data:
+      m_Data: []
+    m_ObjectData:
+      m_Data: []
+  m_Splines:
+  - m_EditModeType: 1
+    m_Knots:
+    - Position:
+        x: -352.5
+        y: -162
+        z: 0
+      TangentIn:
+        x: -14.616516
+        y: 0.0000035351086
+        z: -160.78178
+      TangentOut:
+        x: 0
+        y: 0
+        z: 0
+      Rotation:
+        value:
+          x: -0.70710665
+          y: 0
+          z: -0
+          w: 0.7071068
+    - Position:
+        x: -352.5
+        y: -162
+        z: 0
+      TangentIn:
+        x: 0
+        y: 0
+        z: -199.12305
+      TangentOut:
+        x: 0
+        y: 0
+        z: 199.12305
+      Rotation:
+        value:
+          x: 0.5951531
+          y: -0.38182798
+          z: 0.38182914
+          w: -0.5951527
+    - Position:
+        x: 344.5
+        y: -160
+        z: 0
+      TangentIn:
+        x: 0
+        y: 0
+        z: -261.26617
+      TangentOut:
+        x: 0
+        y: 0
+        z: 261.26617
+      Rotation:
+        value:
+          x: 0.40717956
+          y: -0.5781047
+          z: 0.5781052
+          w: -0.40717828
+    m_MetaData:
+    - Mode: 4
+      Tension: 0.5
+    - Mode: 2
+      Tension: 0.5
+    - Mode: 2
+      Tension: 0.5
+    m_Closed: 0
+    m_IntData:
+      m_Data: []
+    m_FloatData:
+      m_Data: []
+    m_Float4Data:
+      m_Data: []
+    m_ObjectData:
+      m_Data: []
+  m_Knots:
+    m_KnotsLink:
+    - Knots:
+      - Spline: 0
+        Knot: 0
+      - Spline: 0
+        Knot: 1
+--- !u!114 &1512401221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1512401218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e62f0e86c4933445b589de4f727a4d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardPrefab: {fileID: 746771496912337575, guid: d244a3b9508f4ad4b847445df10641be, type: 3}
+  cards: []
+  sc: {fileID: 1512401220}
+  maxHandSize: 5
 --- !u!1 &2063496717
 GameObject:
   m_ObjectHideFlags: 0
