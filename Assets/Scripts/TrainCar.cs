@@ -7,13 +7,14 @@ public class TrainCar : MonoBehaviour
     [SerializeField] private EnemyPoint[] enemyPoints;
 
 
-    public Transform checkSpots()
+    public EnemyPoint checkSpots()
     {
         foreach (EnemyPoint p in enemyPoints)
         {
             if(!p.occupied)
             {
-                return p.transform;
+                p.occupied = true; //I DON'T KNOW HOW TO TURN THIS OFF AAAAHHHHHHHHHHH!1!!!!!!!!!!
+                return p;
             }
         }
         return null;

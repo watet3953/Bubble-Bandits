@@ -5,4 +5,5 @@ using UnityEngine;
 public class EnemyPoint : MonoBehaviour
 {
     public bool occupied = false;
+    public GameObject e;
 }

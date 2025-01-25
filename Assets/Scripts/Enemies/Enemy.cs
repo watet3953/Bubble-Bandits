@@ -19,6 +19,8 @@ public class Enemy : MonoBehaviour
 
     private int bRoom = 2; // the location of the bubble room in the trainManager array.
 
+    EnemyPoint dest;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,13 +50,25 @@ public class Enemy : MonoBehaviour
         //if there isn't then it will stay in the same room.
         if (startRoom < bRoom)
         {
-
+            if(dest != null)//has a previous point.
+            {
+                dest.e = null;
+                dest.occupied = false;
+                dest = TrainManager.Instance.findOpenSpot(startRoom);
+            }
+            else//first point.
+            {
+                dest = TrainManager.Instance.findOpenSpot(startRoom);
+                dest.e = gameObject;
+                dest.occupied = true;
+            }
 
             //Are we having them jump or move?
-            Transform dest = TrainManager.Instance.findOpenSpot(startRoom);
+            
             if (dest != null)
             {
-                transform.position = dest.position;
+                transform.position = dest.transform.position;
+                dest.e = gameObject;
             }
             startRoom++;
 

@@ -46,9 +46,9 @@ public class TrainManager : MonoBehaviour
     /// </summary>
     /// <param name="c"></param> the car that the enemy is currently in.
     /// <returns></returns>
-    public Transform findOpenSpot(int c)
+    public EnemyPoint findOpenSpot(int c)
     {
-        Transform point;
+        EnemyPoint point;
         for(int i = c; i < trainCars.Length; i++)
         {
             point = trainCars[i].checkSpots();
