@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CameraMovement : MonoBehaviour
 {
@@ -8,7 +9,10 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] private Transform[] camPoints;
 
     [SerializeField] private GameObject player;
-    [SerializeField] private Transform[] pPoints; //Player points
+    [SerializeField] private EnemyPoint[] pPoints; //Player points
+
+    [SerializeField] private Button Left;
+    [SerializeField] private Button Right;
 
     private int target = 3;
 
@@ -19,34 +23,31 @@ public class CameraMovement : MonoBehaviour
     void Start()
     {
         transform.position = camPoints[target].position;
-        player.transform.position = pPoints[target].position;
+        player.transform.position = pPoints[target].transform.position;
+        pPoints[target].occupied = true;
         //StartCoroutine(MoveCam(target));
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //When theres a new destination, move to it.
-        //There will be buttons that will increase or decreas the target num by 1.
-        //Then camera will slideeeeee over to the new point.
-        //make a mini cool down so they can't spam it and potentialy break.
-
-
 
     }
 
     public void MoveLeft()
     {
+        pPoints[target].occupied = false;
         target--;
-        player.transform.position = pPoints[target].position;
+        player.transform.position = pPoints[target].transform.position;
+        pPoints[target].occupied = true;
+        Left.interactable = false;
+        Right.interactable = false;
         StartCoroutine(MoveCam(target));
     }
 
     public void MoveRight()
     {
+        pPoints[target].occupied = false;
         target++;
-        player.transform.position = pPoints[target].position;
+        player.transform.position = pPoints[target].transform.position;
+        pPoints[target].occupied = true;
+        Left.interactable = false;
+        Right.interactable = false;
         StartCoroutine(MoveCam(target));
     }
 
@@ -60,6 +61,8 @@ public class CameraMovement : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, camPoints[t].position, speed * Time.deltaTime);
             yield return new WaitForEndOfFrame();
         }
+        Left.interactable = true;
+        Right.interactable = true;
 
     }
 

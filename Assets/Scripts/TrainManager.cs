@@ -59,6 +59,12 @@ public class TrainManager : MonoBehaviour
     }
 
 
+    public bool checkForPlayer(int t)
+    {
+        bool b = trainCars[t].hasPlayer();
+        return b;
+    }
+
     //For the Encounter Builder:
     //Needs the time that the encounter will last.
     //Once that timer is done then one of two things happen, the encounter ends OR it no longer spawns enemies and the encounter is done once all enemies are dead.

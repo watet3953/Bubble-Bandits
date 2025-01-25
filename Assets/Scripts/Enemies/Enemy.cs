@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -21,14 +22,65 @@ public class Enemy : MonoBehaviour
 
     EnemyPoint dest;
 
+    [SerializeField] bool s = false;
+    bool sw = false;
+
     // Start is called before the first frame update
     void Start()
     {
         startRoom = Random.Range(0,2);
         //startRoom = 1;
-        StartCoroutine(Timer());
+        //StartCoroutine(Timer());
     }
 
+    void Update()
+    {
+        if (s && !sw)
+        {
+            Spawn();
+            StartCoroutine(Timer());
+            sw = true;
+        }
+
+
+        if(health <= 0)
+        {
+            GameObject.Destroy(this);
+        }
+    }
+
+    public void Spawn()
+    {
+        bool hasP = TrainManager.Instance.checkForPlayer(startRoom);
+        if (dest == null && hasP)//first point.
+        {
+            if (startRoom == 0)
+            {
+                startRoom++;
+                hasP = TrainManager.Instance.checkForPlayer(startRoom);
+            }
+            else if (startRoom == 1)
+            {
+                startRoom--;
+                hasP = TrainManager.Instance.checkForPlayer(startRoom);
+            }
+            if (!hasP)
+            {
+                dest = TrainManager.Instance.findOpenSpot(startRoom);
+                gameObject.transform.position = dest.transform.position;
+                dest.e = gameObject;
+                dest.occupied = true;
+            }
+        }
+        else if (dest == null && !hasP)
+        {
+            dest = TrainManager.Instance.findOpenSpot(startRoom);
+            gameObject.transform.position = dest.transform.position;
+            dest.e = gameObject;
+            dest.occupied = true;
+        }
+
+    }
 
 
     IEnumerator Timer(float wait = 0.1f, float less = 0.1f)
@@ -44,9 +96,9 @@ public class Enemy : MonoBehaviour
         //if there isn't then it will stay in the same room.
         if (startRoom < bRoom)
         {
-
-            //Are we having them jump or move?
-            if (dest != null)//has a previous point.
+            bool hasP = TrainManager.Instance.checkForPlayer(startRoom);
+            bool hasP2 = TrainManager.Instance.checkForPlayer(startRoom + 1);
+            if (dest != null && !hasP && !hasP2)//has a previous point.
             {
                 dest.e = null;
                 dest.occupied = false;
@@ -58,13 +110,34 @@ public class Enemy : MonoBehaviour
                 Debug.Log("Damage Dealt");
                 TrainManager.Instance.tHealth -= tDamage;
             }
-            else//first point.
-            {
-                dest = TrainManager.Instance.findOpenSpot(startRoom);
-                gameObject.transform.position = dest.transform.position;
-                dest.e = gameObject;
-                dest.occupied = true;
-            }
+
+            //if(dest == null && hasP)//first point.
+            //{
+            //    if(startRoom == 0)
+            //    {
+            //        startRoom++;
+            //        hasP = TrainManager.Instance.checkForPlayer(startRoom);
+            //    }
+            //    else if(startRoom == 1)
+            //    {
+            //        startRoom--;
+            //        hasP = TrainManager.Instance.checkForPlayer(startRoom);
+            //    }
+            //    if (!hasP)
+            //    {
+            //        dest = TrainManager.Instance.findOpenSpot(startRoom);
+            //        gameObject.transform.position = dest.transform.position;
+            //        dest.e = gameObject;
+            //        dest.occupied = true;
+            //    }
+            //}
+            //else if(dest == null && !hasP)
+            //{
+            //    dest = TrainManager.Instance.findOpenSpot(startRoom);
+            //    gameObject.transform.position = dest.transform.position;
+            //    dest.e = gameObject;
+            //    dest.occupied = true;
+            //}
         }
 
         if(startRoom == bRoom)
@@ -88,4 +161,11 @@ public class Enemy : MonoBehaviour
         }
         
     }
+
+
+    public void takeDamage(int d)
+    {
+        health -= d;
+    }
+
 }
