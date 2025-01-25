@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CameraMovement : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class CameraMovement : MonoBehaviour
 
     [SerializeField] private GameObject player;
     [SerializeField] private EnemyPoint[] pPoints; //Player points
+
+    [SerializeField] private Button Left;
+    [SerializeField] private Button Right;
 
     private int target = 3;
 
@@ -31,6 +35,8 @@ public class CameraMovement : MonoBehaviour
         target--;
         player.transform.position = pPoints[target].transform.position;
         pPoints[target].occupied = true;
+        Left.interactable = false;
+        Right.interactable = false;
         StartCoroutine(MoveCam(target));
     }
 
@@ -40,6 +46,8 @@ public class CameraMovement : MonoBehaviour
         target++;
         player.transform.position = pPoints[target].transform.position;
         pPoints[target].occupied = true;
+        Left.interactable = false;
+        Right.interactable = false;
         StartCoroutine(MoveCam(target));
     }
 
@@ -53,6 +61,8 @@ public class CameraMovement : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, camPoints[t].position, speed * Time.deltaTime);
             yield return new WaitForEndOfFrame();
         }
+        Left.interactable = true;
+        Right.interactable = true;
 
     }
 
