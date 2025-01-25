@@ -5,7 +5,7 @@ using UnityEngine;
 public class TrainCar : MonoBehaviour
 {
     [SerializeField] private EnemyPoint[] enemyPoints;
-
+    [SerializeField] private EnemyPoint playerPoint;
 
     public EnemyPoint checkSpots()
     {
@@ -19,5 +19,18 @@ public class TrainCar : MonoBehaviour
         }
         return null;
     } 
+
+
+    public bool hasPlayer()
+    {
+        if (playerPoint.occupied)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 
 }

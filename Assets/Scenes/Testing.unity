@@ -886,7 +886,7 @@ Transform:
   m_GameObject: {fileID: 729109784}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.16, y: -0.33, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 6.01305, y: 4.24609, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1204,7 +1204,7 @@ Transform:
   m_GameObject: {fileID: 778653647}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.4, y: -1.82, z: -1}
+  m_LocalPosition: {x: -1.4, y: -1.5, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1545,8 +1545,12 @@ MonoBehaviour:
   - {fileID: 926062108}
   - {fileID: 722146632}
   - {fileID: 1415227985}
-  player: {fileID: 0}
-  pPoints: []
+  player: {fileID: 1116505877}
+  pPoints:
+  - {fileID: 142333435}
+  - {fileID: 228410235}
+  - {fileID: 2099452698}
+  - {fileID: 778653648}
 --- !u!114 &952257758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1669,6 +1673,7 @@ MonoBehaviour:
   enemyPoints:
   - {fileID: 986739436}
   - {fileID: 1462366740}
+  playerPoint: {fileID: 2099452698}
 --- !u!4 &1003186799
 Transform:
   m_ObjectHideFlags: 0
@@ -1825,6 +1830,7 @@ MonoBehaviour:
   enemyPoints:
   - {fileID: 571423831}
   - {fileID: 403704057}
+  playerPoint: {fileID: 142333435}
 --- !u!1 &1390751666
 GameObject:
   m_ObjectHideFlags: 0
@@ -1851,7 +1857,7 @@ Transform:
   m_GameObject: {fileID: 1390751666}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12, y: -1.68, z: 0}
+  m_LocalPosition: {x: 12, y: -2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1875,6 +1881,7 @@ MonoBehaviour:
   enemyPoints:
   - {fileID: 0}
   - {fileID: 0}
+  playerPoint: {fileID: 0}
 --- !u!1 &1396126350
 GameObject:
   m_ObjectHideFlags: 0
@@ -2303,6 +2310,7 @@ MonoBehaviour:
   enemyPoints:
   - {fileID: 1433918336}
   - {fileID: 907979566}
+  playerPoint: {fileID: 228410235}
 --- !u!1 &2099452697
 GameObject:
   m_ObjectHideFlags: 0
@@ -2354,8 +2362,8 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 952257756}
+  - {fileID: 1116505879}
   - {fileID: 732764021}
   - {fileID: 1891573125}
   - {fileID: 624316930}
   - {fileID: 621116505}
-  - {fileID: 1116505879}

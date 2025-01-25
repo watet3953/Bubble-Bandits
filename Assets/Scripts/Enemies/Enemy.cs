@@ -44,9 +44,9 @@ public class Enemy : MonoBehaviour
         //if there isn't then it will stay in the same room.
         if (startRoom < bRoom)
         {
-
-            //Are we having them jump or move?
-            if (dest != null)//has a previous point.
+            bool hasP = TrainManager.Instance.checkForPlayer(startRoom);
+            bool hasP2 = TrainManager.Instance.checkForPlayer(startRoom + 1);
+            if (dest != null && !hasP && !hasP2)//has a previous point.
             {
                 dest.e = null;
                 dest.occupied = false;
@@ -58,7 +58,28 @@ public class Enemy : MonoBehaviour
                 Debug.Log("Damage Dealt");
                 TrainManager.Instance.tHealth -= tDamage;
             }
-            else//first point.
+
+            if(dest == null && hasP)//first point.
+            {
+                if(startRoom == 0)
+                {
+                    startRoom++;
+                    hasP = TrainManager.Instance.checkForPlayer(startRoom);
+                }
+                else if(startRoom == 1)
+                {
+                    startRoom--;
+                    hasP = TrainManager.Instance.checkForPlayer(startRoom);
+                }
+                if (!hasP)
+                {
+                    dest = TrainManager.Instance.findOpenSpot(startRoom);
+                    gameObject.transform.position = dest.transform.position;
+                    dest.e = gameObject;
+                    dest.occupied = true;
+                }
+            }
+            else if(dest == null && !hasP)
             {
                 dest = TrainManager.Instance.findOpenSpot(startRoom);
                 gameObject.transform.position = dest.transform.position;
