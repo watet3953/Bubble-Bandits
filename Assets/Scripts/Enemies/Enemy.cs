@@ -14,7 +14,7 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private int bubbleDamageDealt = 0;
 
-    private int tDamage = 3; //Damage dealt to train
+    private int tDamage = 2; //Damage dealt to train
     private int bDamage = 2; //Damage dealt to Bubble Supply
 
     // Start is called before the first frame update
@@ -46,16 +46,21 @@ public class Enemy : MonoBehaviour
         if (startRoom > 0)
         {
             startRoom--;
-           
+            //Deal Damage
+            TrainManager.Instance.tHealth -= tDamage;
         }
 
         if(startRoom == 0)
         {
             Debug.Log("Deal Bubble Damage");
+            TrainManager.Instance.tHealth -= tDamage;
+            TrainManager.Instance.bSupply -= bDamage;
             bubbleDamageDealt += bDamage;
         }
 
-        //Deal Damage
+
+
+
         Debug.Log("Damage Dealt");
         timeLimit = maxTime;
 
