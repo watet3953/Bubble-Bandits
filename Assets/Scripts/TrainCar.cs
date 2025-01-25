@@ -7,16 +7,16 @@ public class TrainCar : MonoBehaviour
     [SerializeField] private EnemyPoint[] enemyPoints;
 
 
-
-    // Start is called before the first frame update
-    void Start()
+    public Transform checkSpots()
     {
-        
-    }
+        foreach (EnemyPoint p in enemyPoints)
+        {
+            if(!p.occupied)
+            {
+                return p.transform;
+            }
+        }
+        return null;
+    } 
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

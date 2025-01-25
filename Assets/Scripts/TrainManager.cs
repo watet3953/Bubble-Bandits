@@ -41,6 +41,26 @@ public class TrainManager : MonoBehaviour
     //Get the enemy spots from the rooms and hold that in a seperate array?
     //The spots should have a mini script that lets them know if they are occupied or not.
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="c"></param> the car that the enemy is currently in.
+    /// <returns></returns>
+    public Transform findOpenSpot(int c)
+    {
+        Transform point;
+        for(int i = c; i < trainCars.Length; i++)
+        {
+            point = trainCars[i].checkSpots();
+            if(point != null)
+            {
+                return point;
+            }
+        }
+        return null;
+    }
+
+
     //For the Encounter Builder:
     //Needs the time that the encounter will last.
     //Once that timer is done then one of two things happen, the encounter ends OR it no longer spawns enemies and the encounter is done once all enemies are dead.

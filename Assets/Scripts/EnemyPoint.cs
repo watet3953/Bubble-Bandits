@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class EnemyPoint : MonoBehaviour
 {
-    [SerializeField] private bool occupied = false;
+    public bool occupied = false;
 }

@@ -17,10 +17,13 @@ public class Enemy : MonoBehaviour
     private int tDamage = 2; //Damage dealt to train
     private int bDamage = 2; //Damage dealt to Bubble Supply
 
+    private int bRoom = 2; // the location of the bubble room in the trainManager array.
+
     // Start is called before the first frame update
     void Start()
     {
-        startRoom = Random.Range(1,3);
+        //startRoom = Random.Range(1,3);
+        startRoom = 0;
         StartCoroutine(Timer());
     }
 
@@ -43,18 +46,23 @@ public class Enemy : MonoBehaviour
 
         //will move the enemy to the next room if there is an open spot.
         //if there isn't then it will stay in the same room.
-        if (startRoom > 0)
+        if (startRoom < bRoom)
         {
-            startRoom--;
+
 
             //Are we having them jump or move?
-
+            Transform dest = TrainManager.Instance.findOpenSpot(startRoom);
+            if (dest != null)
+            {
+                transform.position = dest.position;
+            }
+            startRoom++;
 
             //Deal Damage
             TrainManager.Instance.tHealth -= tDamage;
         }
 
-        if(startRoom == 0)
+        if(startRoom == bRoom)
         {
             Debug.Log("Deal Bubble Damage");
             TrainManager.Instance.tHealth -= tDamage;
@@ -75,6 +83,7 @@ public class Enemy : MonoBehaviour
         else
         {
             Debug.Log("Bubble Bandit had Left");
+            gameObject.SetActive(false);
         }
         
     }
