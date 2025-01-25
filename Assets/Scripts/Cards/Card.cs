@@ -51,6 +51,8 @@ public class CardAbility : MonoBehaviour
 
     protected virtual void Start()
     {
+        cardMain = GetComponent<Card>();
+        
         if (cardMain)
         {
             effectPosition = cardMain.transform.position;

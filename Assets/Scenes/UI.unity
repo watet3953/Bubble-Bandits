@@ -556,6 +556,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardPrefab: {fileID: 746771496912337575, guid: d244a3b9508f4ad4b847445df10641be, type: 3}
   cards: []
+  badCards:
+  - {fileID: 746771496912337575, guid: ef51e8d77a24c86438f1fd62a023b39e, type: 3}
+  - {fileID: 746771496912337575, guid: ef51e8d77a24c86438f1fd62a023b39e, type: 3}
+  - {fileID: 746771496912337575, guid: ef51e8d77a24c86438f1fd62a023b39e, type: 3}
+  - {fileID: 746771496912337575, guid: ef51e8d77a24c86438f1fd62a023b39e, type: 3}
+  - {fileID: 746771496912337575, guid: ef51e8d77a24c86438f1fd62a023b39e, type: 3}
   sc: {fileID: 1512401220}
   maxHandSize: 5
 --- !u!1 &2063496717

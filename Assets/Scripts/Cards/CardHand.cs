@@ -6,7 +6,8 @@ using UnityEngine.Splines; // this guy is real
 public class CardHand : MonoBehaviour
 {
     public GameObject cardPrefab;
-    public List<GameObject> cards = new();
+    [HideInInspector] public List<GameObject> cards;
+    [SerializeField] public GameObject[] badCards;
     private List<Vector3> desiredPos = new();
     private List<Quaternion> desiredRot = new();
     public SplineContainer sc; // also fake error
@@ -16,10 +17,11 @@ public class CardHand : MonoBehaviour
 
     public void Start()
     {
-        for (int i = 0; i < 5; i++)
+        foreach (GameObject card in badCards )
         {
-            AddCard(Instantiate(cardPrefab, transform));
+            AddCard( card );
         }
+        badCards = null;
     }
 
     public void Update()
@@ -32,9 +34,10 @@ public class CardHand : MonoBehaviour
         }
     }
 
-    public void AddCard(GameObject card)
+    public void AddCard(GameObject badcard)
     {
         if (cards.Count >= maxHandSize) return;
+        GameObject card = Instantiate(badcard, transform);
         card.transform.SetParent(transform, true);
         cards.Add(card);
         desiredPos.Add(card.transform.position);
