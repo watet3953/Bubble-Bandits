@@ -337,6 +337,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   occupied: 0
+  e: {fileID: 0}
 --- !u!1 &571423829
 GameObject:
   m_ObjectHideFlags: 0
@@ -382,6 +383,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   occupied: 0
+  e: {fileID: 0}
 --- !u!1 &722146630
 GameObject:
   m_ObjectHideFlags: 0
@@ -544,6 +546,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   occupied: 0
+  e: {fileID: 0}
 --- !u!4 &907979567
 Transform:
   m_ObjectHideFlags: 0
@@ -757,7 +760,7 @@ GameObject:
   - component: {fileID: 1349937578}
   - component: {fileID: 1349937579}
   m_Layer: 0
-  m_Name: Room 1
+  m_Name: Bubble Room
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -903,6 +906,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   occupied: 0
+  e: {fileID: 0}
 --- !u!1 &1774582444
 GameObject:
   m_ObjectHideFlags: 0

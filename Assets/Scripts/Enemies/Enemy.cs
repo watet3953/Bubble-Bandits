@@ -24,17 +24,11 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //startRoom = Random.Range(1,3);
-        startRoom = 0;
+        startRoom = Random.Range(0,2);
+        //startRoom = 1;
         StartCoroutine(Timer());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-
-    }
 
 
     IEnumerator Timer(float wait = 0.1f, float less = 0.1f)
@@ -50,30 +44,27 @@ public class Enemy : MonoBehaviour
         //if there isn't then it will stay in the same room.
         if (startRoom < bRoom)
         {
-            if(dest != null)//has a previous point.
+
+            //Are we having them jump or move?
+            if (dest != null)//has a previous point.
             {
                 dest.e = null;
                 dest.occupied = false;
+                startRoom++;
                 dest = TrainManager.Instance.findOpenSpot(startRoom);
+                gameObject.transform.position = dest.transform.position;
+
+                //Deal Damage
+                Debug.Log("Damage Dealt");
+                TrainManager.Instance.tHealth -= tDamage;
             }
             else//first point.
             {
                 dest = TrainManager.Instance.findOpenSpot(startRoom);
+                gameObject.transform.position = dest.transform.position;
                 dest.e = gameObject;
                 dest.occupied = true;
             }
-
-            //Are we having them jump or move?
-            
-            if (dest != null)
-            {
-                transform.position = dest.transform.position;
-                dest.e = gameObject;
-            }
-            startRoom++;
-
-            //Deal Damage
-            TrainManager.Instance.tHealth -= tDamage;
         }
 
         if(startRoom == bRoom)
@@ -84,10 +75,6 @@ public class Enemy : MonoBehaviour
             bubbleDamageDealt += bDamage;
         }
 
-
-
-
-        Debug.Log("Damage Dealt");
         timeLimit = maxTime;
 
         if (bubbleDamageDealt < 6)

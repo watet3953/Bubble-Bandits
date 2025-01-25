@@ -49,13 +49,11 @@ public class TrainManager : MonoBehaviour
     public EnemyPoint findOpenSpot(int c)
     {
         EnemyPoint point;
-        for(int i = c; i < trainCars.Length; i++)
+
+        point = trainCars[c].checkSpots();
+        if(point != null)
         {
-            point = trainCars[i].checkSpots();
-            if(point != null)
-            {
-                return point;
-            }
+            return point;
         }
         return null;
     }
