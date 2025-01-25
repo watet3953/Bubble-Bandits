@@ -54,11 +54,13 @@ public class CardHand : MonoBehaviour
         if (cards.Count == 0) return; // give up pal, seriously.
 
         float cardSpacing = 1.0f / maxHandSize;
-        float firstCardPos = 0.5f - (cards.Count - 1) * cardSpacing / 2;
+        float firstCardPos = 0.5f - (cards.Count - 2) * cardSpacing / 2;
+        print("First Card Pos:" + firstCardPos);
         Spline spline = sc.Spline; // fake error, just pretend it's not real :)
         for (int i = 0; i < cards.Count; i++)
         {
-            float cardPos = firstCardPos + i * cardSpacing - 0.0001f;
+            float cardPos = firstCardPos + i * cardSpacing;
+            print(cardPos);
             Vector3 splinePos = spline.EvaluatePosition(cardPos);
             Vector3 forward = spline.EvaluateTangent(cardPos);
             Vector3 up = spline.EvaluateUpVector(cardPos);
