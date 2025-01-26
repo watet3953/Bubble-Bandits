@@ -14,12 +14,14 @@ public class Card : MonoBehaviour
         InEffect,
         Discarded
     }
-    
+
+    [SerializeField] GameObject sphere;
     public CardStates currentState = CardStates.Werk;
     public float abilityCooldown = 2.0f;  // cooldown placed on other cards after ability
     public float exhaustCooldown = 1.0f;  // cooldown placed on other cards after exhaust
     private int trainHealthInc = 5;
     private bool mouseOn = false;
+    public Vector2 castPosition = Vector2.zero;
 
     [SerializeField] private CardAbility[] abilities;   // list of card's abilities
 
@@ -27,7 +29,7 @@ public class Card : MonoBehaviour
     {
         mouseOn = PointInside(Input.mousePosition);
 
-        //print(Input.GetMouseButtonUp(0));
+        //print(currentState);
 
         if (mouseOn)
         {
@@ -38,13 +40,29 @@ public class Card : MonoBehaviour
 
             else if (Input.GetMouseButtonUp(0))
             {
-                currentState = CardStates.Werk;
+                currentState = CardStates.InEffect;
                 mouseOn = false;
+                UseAbility();
             }
         }
 
         if (currentState == CardStates.Dragged && Input.GetMouseButton(0))
+        {
             transform.position = Input.mousePosition;
+            
+            Ray newRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            RaycastHit hit;
+
+            if (Physics.Raycast(newRay, out hit))
+            {
+                castPosition = hit.point;
+                foreach (CardAbility ability in abilities)
+                    ability.transform.position = castPosition;
+                sphere.transform.position = castPosition;
+                //print(castPosition);
+            }
+        }
     }
 
     private bool PointInside(Vector2 point)
@@ -58,12 +76,10 @@ public class Card : MonoBehaviour
     /// </summary>
     public void UseAbility()
     {
-        currentState = CardStates.InEffect;
         foreach (CardAbility ability in abilities)
         {
             ability.Activate();
         }
-        currentState = CardStates.Discarded;
     }
 
     /// <summary>
@@ -81,17 +97,11 @@ public class CardAbility : MonoBehaviour
 {
     [SerializeField] protected Card cardMain;
     protected Vector2 effectPosition;
-    protected Collider effectRadius;
+    [SerializeField] protected Collider effectRadius;
 
     protected virtual void Start()
     {
-        cardMain = GetComponent<Card>();
-        
-        if (cardMain)
-        {
-            effectPosition = cardMain.transform.position;
-            effectRadius = cardMain.GetComponent<Collider>();
-        }
+        //cardMain = GetComponent<Card>();
     }
 
     /// <summary>
@@ -99,7 +109,7 @@ public class CardAbility : MonoBehaviour
     /// </summary>
     public virtual void Activate() 
     {
-        effectPosition = cardMain.transform.position;
+        effectPosition = cardMain.castPosition;
         effectRadius.enabled = true;
     }
 }
