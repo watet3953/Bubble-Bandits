@@ -82,4 +82,12 @@ public class TrainManager : MonoBehaviour
     {
         // make sure to reset the train-side stuff like player, also probably reset the hand.
     }
+
+
+    public void EndEncounter()
+    {
+        GameManager.Instance.SwapToSceneWithCall("Map Scene", () => MapManager.Instance.EndRound());
+
+    }
+
 }
