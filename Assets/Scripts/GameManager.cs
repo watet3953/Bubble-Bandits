@@ -53,6 +53,19 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void AddCardToDeck(GameObject g)
+    {
+        deck.Add(g);
+    }
+
+    public void RemoveCardFromDeck(GameObject g)
+    {
+        if (deck.Contains(g))
+        {
+            deck.Remove(g);
+        }
+    }
+
     public GameObject GetCardFromDeck()
     {
         int rand = UnityEngine.Random.Range(0, deck.Count - 1);
