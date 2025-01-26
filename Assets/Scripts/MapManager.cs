@@ -55,7 +55,7 @@ public class MapManager : MonoBehaviour
 
     public void Update()
     {
-        if ((camera.transform.position - moveTo).magnitude > 1f)
+        if (camera != null && (camera.transform.position - moveTo).magnitude > 1f)
         {
             camera.transform.position = Vector3.Lerp(camera.transform.position, moveTo, 0.1f);
 
