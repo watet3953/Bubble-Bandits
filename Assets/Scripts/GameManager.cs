@@ -17,19 +17,23 @@ public class GameManager : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
-
-        SwapToScene("Title Scene");
     }
     #endregion Singleton
 
     int curSceneIndex = 0;
 
+    public void Start()
+    {
+        curSceneIndex = SceneManager.GetActiveScene().buildIndex;
+    }
+
     public void SwapToScene(string sn) => StartCoroutine(SwapToSceneInternal(sn));
 
     private IEnumerator SwapToSceneInternal(string sn)
     {
-        yield return SceneManager.UnloadSceneAsync(curSceneIndex);
         yield return SceneManager.LoadSceneAsync(sn);
+        if (SceneManager.GetSceneByBuildIndex(curSceneIndex).isLoaded)
+            yield return SceneManager.UnloadSceneAsync(curSceneIndex);
         curSceneIndex = SceneManager.GetSceneByName(sn).buildIndex;
     }
 
