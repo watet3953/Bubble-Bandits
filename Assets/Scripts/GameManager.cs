@@ -13,19 +13,24 @@ public class GameManager : MonoBehaviour
         if (Instance != null)
         {
             Debug.LogError("Two copies of GameManager");
-            Destroy(this);
+            Destroy(gameObject);
         }
         Instance = this;
-        DontDestroyOnLoad(this);
+        DontDestroyOnLoad(gameObject);
 
-        SwapToScene("Train Scene");
+        SwapToScene("Title Scene");
     }
     #endregion Singleton
 
+    int curSceneIndex = 0;
 
-    public void SwapToScene(string sn)
+    public void SwapToScene(string sn) => StartCoroutine(SwapToSceneInternal(sn));
+
+    private IEnumerator SwapToSceneInternal(string sn)
     {
-        SceneManager.LoadScene(sceneName: sn);
+        yield return SceneManager.UnloadSceneAsync(curSceneIndex);
+        yield return SceneManager.LoadSceneAsync(sn);
+        curSceneIndex = SceneManager.GetSceneByName(sn).buildIndex;
     }
 
 }
