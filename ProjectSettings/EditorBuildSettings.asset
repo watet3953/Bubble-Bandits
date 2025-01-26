@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/FINAL SCENES/PersistentScene.unity
     guid: 09f73db0a9fccf34eb9d192d6849d47c
   - enabled: 1
-    path: Assets/Scenes/FINAL SCENES/Train Screen.unity
+    path: Assets/Scenes/FINAL SCENES/Train Scene.unity
     guid: 9044764a212c5724ebe202251448cbb1
   m_configObjects: {}
