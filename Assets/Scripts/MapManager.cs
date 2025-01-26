@@ -14,10 +14,11 @@ public class MapManager : MonoBehaviour
     {
         if (Instance != null)
         {
-            Debug.LogError("Two copies of TrainManager");
+            Debug.LogError("Two copies of MapManager");
             Destroy(this);
         }
         Instance = this;
+        DontDestroyOnLoad(this);
     }
     #endregion Singleton
 
