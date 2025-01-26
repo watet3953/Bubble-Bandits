@@ -23,7 +23,8 @@ public class DealDamage : CardAbility
             foreach (Enemy enemy in enemies)
                 enemy.TakeDamage(damage);
             cardMain.currentState = Card.CardStates.Discarded;
-            cardMain.gameObject.SetActive(false);
+            cardMain.hand.RemoveCard(cardMain.gameObject);
+            Destroy(cardMain.gameObject);
         }
         else
         {

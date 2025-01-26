@@ -51,10 +51,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17176b4e13710f64c890a93fd0868fb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sphere: {fileID: 0}
   currentState: 1
   abilityCooldown: 2
   exhaustCooldown: 1
+  layerMask: 3
   castPosition: {x: 0, y: 0}
   abilities:
   - {fileID: 3646050332092697914}

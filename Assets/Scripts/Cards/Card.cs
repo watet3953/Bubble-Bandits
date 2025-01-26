@@ -15,6 +15,7 @@ public class Card : MonoBehaviour
         Discarded
     }
 
+    public CardHand hand;
     public CardStates currentState = CardStates.Werk;
     public float abilityCooldown = 2.0f;  // cooldown placed on other cards after ability
     public float exhaustCooldown = 1.0f;  // cooldown placed on other cards after exhaust
@@ -25,6 +26,11 @@ public class Card : MonoBehaviour
     public Vector2 castPosition = Vector2.zero;
 
     [SerializeField] private CardAbility[] abilities;   // list of card's abilities
+
+    private void Start()
+    {
+        transform.parent.TryGetComponent<CardHand>(out hand);
+    }
 
     private void Update()
     {

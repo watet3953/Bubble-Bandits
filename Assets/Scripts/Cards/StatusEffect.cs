@@ -66,7 +66,8 @@ public class StatusEffect : CardAbility
         effectRadius.enabled = false;
         cardMain.currentState = Card.CardStates.Discarded;
         cardMain.ResetRadius();
-        cardMain.gameObject.SetActive(false);
+        cardMain.hand.RemoveCard(cardMain.gameObject);
+        Destroy(cardMain.gameObject);
     }
 
     private void OnTriggerEnter(Collider other)

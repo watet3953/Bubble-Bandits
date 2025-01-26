@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
-using Unity.Mathematics;
+//using Unity.Mathematics;
 using UnityEngine.Splines; // this guy is real
 
 public class CardHand : MonoBehaviour
 {
-    public GameObject cardPrefab;
+    public GameObject[] cardPrefabs;
     [HideInInspector] public List<GameObject> cards;
     [SerializeField] public GameObject[] badCards;
     private List<Vector3> desiredPos = new();
@@ -17,26 +17,42 @@ public class CardHand : MonoBehaviour
 
     public void Start()
     {
-        foreach (GameObject card in badCards )
+        cards = new List<GameObject>();
+        
+        if (badCards.Length == 0)
         {
-            AddCard( card );
+            RefillCards();
         }
-        badCards = null;
+        else
+        {
+            foreach (GameObject card in badCards)
+            {
+                AddCard(card);
+            }
+        }
+        
+        //badCards = null;
     }
 
     public void Update()
     {
-        for (int i = 0; i < cards.Count; i++)
+        if (cards.Count > 0)
         {
-            if (((cards[i].transform.localPosition - desiredPos[i]).magnitude > 1f) &&
-                cards[i].GetComponent<Card>().currentState != Card.CardStates.Dragged)
+            for (int i = 0; i < cards.Count; i++)
             {
-                cards[i].transform.SetLocalPositionAndRotation(
-                    Vector3.Lerp(cards[i].transform.localPosition, desiredPos[i], 0.1f),
-                    Quaternion.RotateTowards(cards[i].transform.localRotation, desiredRot[i], 15f));
+                if (((cards[i].transform.localPosition - desiredPos[i]).magnitude > 1f) &&
+                    cards[i].GetComponent<Card>().currentState != Card.CardStates.Dragged)
+                {
+                    cards[i].transform.SetLocalPositionAndRotation(
+                        Vector3.Lerp(cards[i].transform.localPosition, desiredPos[i], 0.1f),
+                        Quaternion.RotateTowards(cards[i].transform.localRotation, desiredRot[i], 15f));
 
+                }
             }
         }
+
+        if (Input.GetMouseButtonDown(1))
+            RefillCards();
     }
 
     public void AddCard(GameObject badcard)
@@ -75,6 +91,32 @@ public class CardHand : MonoBehaviour
             Quaternion rotation = Quaternion.LookRotation(up, Vector3.Cross(up, forward).normalized);
             desiredPos[i] = splinePos;
             desiredRot[i] = rotation;
+        }
+    }
+
+    public void DrawCard()
+    {
+
+    }
+
+    public void RefillCards()
+    {
+        for (int i = cards.Count - 1; i >= 0; i--)
+        {
+            RemoveCard(cards[i]);
+        }
+
+        cards.Clear();
+
+        //foreach (GameObject card in badCards)
+        //{
+        //    AddCard(card);
+        //}
+
+        for (int i = 0; i < maxHandSize; i++)
+        {
+            GameObject newCard = Instantiate(cardPrefabs[Random.Range(0, cardPrefabs.Length)], transform);
+            cards.Add(newCard);
         }
     }
 }
