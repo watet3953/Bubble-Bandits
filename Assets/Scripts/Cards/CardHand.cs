@@ -16,12 +16,18 @@ public class CardHand : MonoBehaviour
     public int maxHandSize;
 
 
-    public void Start()
+    public void OnEnable()
     {
         cards = new List<GameObject>();
         
-        if (isDeck )
+        if (isDeck)
         {
+            foreach (GameObject card in cards)
+            {
+                RemoveCard(card);
+            }
+            cards.Clear();
+            DESTROYCHILDREN();
             maxHandSize = GameManager.Instance.deck.Count;
             foreach (GameObject card in GameManager.Instance.deck)
             {
@@ -68,6 +74,14 @@ public class CardHand : MonoBehaviour
             RefillCards();
     }
 
+    public void DESTROYCHILDREN()
+    {
+        foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject);
+        }
+    }
+
     public void AddCard(GameObject badcard)
     {
         if (cards.Count >= maxHandSize) return;
@@ -78,6 +92,7 @@ public class CardHand : MonoBehaviour
         desiredRot.Add(card.transform.rotation);
         UpdateCardPos();
     }
+
 
     public void RemoveCard(GameObject card)
     {
