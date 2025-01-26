@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TrainCar : MonoBehaviour
 {
-    [SerializeField] private EnemyPoint[] enemyPoints;
+    [SerializeField] public EnemyPoint[] enemyPoints;
     [SerializeField] private EnemyPoint playerPoint;
 
     public EnemyPoint checkSpots()

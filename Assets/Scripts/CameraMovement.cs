@@ -18,6 +18,9 @@ public class CameraMovement : MonoBehaviour
 
     int speed = 5;
 
+    [SerializeField] private TrainCar[] rooms;
+    [SerializeField] private GameObject leftWarn;
+    [SerializeField] private GameObject rightWarn;
 
     // Start is called before the first frame update
     void Start()
@@ -26,8 +29,60 @@ public class CameraMovement : MonoBehaviour
         player.transform.position = pPoints[target].transform.position;
         pPoints[target].occupied = true;
         //StartCoroutine(MoveCam(target));
+        //leftWarn.SetActive(false);
+        //rightWarn.SetActive(false);
 
     }
+
+    private void Update()
+    {
+        //Need to check the rooms next to the current one.
+        //If there is an enemy in the room, then it will show the exclamation icon.
+
+        if (target > 0)
+        {
+            CheckLeft();
+        }
+
+        if (target < rooms.Length - 1) {
+            CheckRight();
+        }
+    }
+
+    private void CheckLeft()
+    {
+        //look at car too the left
+        foreach(EnemyPoint e in rooms[target - 1].enemyPoints)
+        {
+            if (e.occupied)
+            {
+                leftWarn.SetActive(true);
+                break;
+            }
+            else
+            {
+                leftWarn.SetActive(false);
+            }
+        }
+    }
+
+    private void CheckRight()
+    {
+        foreach (EnemyPoint e in rooms[target + 1].enemyPoints)
+        {
+            if (e.occupied)
+            {
+                rightWarn.SetActive(true);
+                break;
+            }
+            else
+            {
+                rightWarn.SetActive(false);
+            }
+        }
+    }
+
+
 
     public void MoveLeft()
     {
