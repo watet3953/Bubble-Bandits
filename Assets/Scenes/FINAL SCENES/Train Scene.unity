@@ -3180,7 +3180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d468a49d23718847a3e03eb111bff94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.2
+  speed: 0.1
   bRenderer: {fileID: 1287337291}
 --- !u!212 &1287337291
 SpriteRenderer:
@@ -9160,15 +9160,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb0556c0e6733da45be76d18585f3080, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tHealth: 0
-  bSupply: 0
   trainCars:
   - {fileID: 1003186798}
   - {fileID: 2066063292}
   - {fileID: 1349937579}
   encounter: 
   pos: {fileID: 1108098659}
-  had: {fileID: 0}
 --- !u!4 &1891573125
 Transform:
   m_ObjectHideFlags: 0

@@ -53,7 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hand: {fileID: 0}
   currentState: 1
-  abilityCooldown: 2
+  abilityCooldown: 0
   exhaustCooldown: 1
   layerMask: 3
   castPosition: {x: 0, y: 0}
@@ -87,7 +87,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 3084986234682550155, guid: de169300ab3e64b4ba7d950deed63255, type: 3}
+  m_Sprite: {fileID: 7834414346935820134, guid: eff5fa8dd0575fd4eb860458f2309b92, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
