@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
@@ -82,7 +83,8 @@ public class MapManager : MonoBehaviour
 
         int i = UnityEngine.Random.Range(0, events.Length);
 
-        events[i].gameObject.SetActive(true);
+        
+        SceneManager.GetSceneByName("Map Scene").GetRootGameObjects()[1].transform.Find("Event" + i).gameObject.SetActive(true);
 
 
         EndRound();

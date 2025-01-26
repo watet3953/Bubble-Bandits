@@ -6,7 +6,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     private int maxHealth;
-    [SerializeField] private int health;
+    [SerializeField] public int health;
 
     [SerializeField] private int startRoom;
 
@@ -45,8 +45,8 @@ public class Enemy : MonoBehaviour
 
         if(health <= 0)
         {
-            TrainManager.Instance.dead.Enqueue(this.gameObject);
-            Destroy(gameObject);
+            TrainManager.Instance.dead.Add(this.gameObject);
+            gameObject.SetActive(false);
         }
     }
 
@@ -130,7 +130,7 @@ public class Enemy : MonoBehaviour
         else
         {
             Debug.Log("Bubble Bandit had Left");
-            TrainManager.Instance.dead.Enqueue(this.gameObject);
+            TrainManager.Instance.dead.Add(this.gameObject);
             gameObject.SetActive(false);
         }
         

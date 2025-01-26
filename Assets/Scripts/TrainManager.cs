@@ -16,8 +16,8 @@ public class TrainManager : MonoBehaviour
     [SerializeField] private TrainCar[] trainCars;
 
     [SerializeField] public int[] encounter;
-    public Queue<GameObject> encounterQueue = new Queue<GameObject>();
-    public Queue<GameObject> dead = new Queue<GameObject>();
+    public List<GameObject> encounterList = new List<GameObject>();
+    public List<GameObject> dead = new List<GameObject>();
 
     [SerializeField] private Transform pos;
     private int total;
@@ -40,17 +40,27 @@ public class TrainManager : MonoBehaviour
 
     private void Start()
     {
-
+        total = encounterList.Count;
     }
 
     private void Update()
     {
 
-        if(dead.Count == total && total > 0)
+        if(dead.Count >= total && !ending)
         {
-            EndEncounter();
+            StartCoroutine(EndDelay(3f));
         }
 
+    }
+
+    bool ending = false;
+
+    public IEnumerator EndDelay(float time)
+    {
+        if (ending) yield break;
+        ending = true;
+        yield return new WaitForSeconds(time);
+        EndEncounter();
     }
 
 
@@ -114,7 +124,7 @@ public class TrainManager : MonoBehaviour
 
     public void SetUpEncounter()
     {
-        //Set up a queue that will randomly add the different enemies.
+        //Set up a List that will randomly add the different enemies.
         int total = 0;
 
         foreach (int i in encounter)
@@ -122,12 +132,12 @@ public class TrainManager : MonoBehaviour
             total += i;
         }
 
-        //Now it has to add the enemies to a queue by randomly choosing one of the ints in encounter.
-        //depending on the int it will bring in a certain prefab to the queue and decrease the num by 1.
+        //Now it has to add the enemies to a List by randomly choosing one of the ints in encounter.
+        //depending on the int it will bring in a certain prefab to the List and decrease the num by 1.
         //if the int is 0, then it will keep grabbing a new random number until it gets one.
-        //When the length of the queue is the same as total, then it will stop.
+        //When the length of the List is the same as total, then it will stop.
         int rand;
-        while (encounterQueue.Count < total)
+        while (encounterList.Count < total)
         {
             rand = UnityEngine.Random.Range(0, encounter.Length);
 
@@ -140,28 +150,28 @@ public class TrainManager : MonoBehaviour
             switch (rand)
             {
                 case 0:
-                    encounterQueue.Enqueue(Instantiate(Resources.Load("Enemies/Spiky joe") as GameObject, pos));
+                    encounterList.Add(Instantiate(Resources.Load("Enemies/Spiky joe") as GameObject, pos));
                     encounter[rand]--;
                     break;
                 case 1:
-                    encounterQueue.Enqueue(Instantiate(Resources.Load("Enemies/Prickle Pete") as GameObject, pos));
+                    encounterList.Add(Instantiate(Resources.Load("Enemies/Prickle Pete") as GameObject, pos));
                     encounter[rand]--;
                     break;
                 case 2:
-                    encounterQueue.Enqueue(Instantiate(Resources.Load("Enemies/Gil") as GameObject, pos));
+                    encounterList.Add(Instantiate(Resources.Load("Enemies/Gil") as GameObject, pos));
                     encounter[rand]--;
                     break;
                 case 3:
-                    encounterQueue.Enqueue(Instantiate(Resources.Load("Enemies/Sgt. Stab") as GameObject, pos));
+                    encounterList.Add(Instantiate(Resources.Load("Enemies/Sgt. Stab") as GameObject, pos));
                     encounter[rand]--;
                     break;
             }
         }
-        foreach (GameObject g in encounterQueue)
+        foreach (GameObject g in encounterList)
         {
             g.SetActive(true);
         }
-        total = encounterQueue.Count;
+        total = encounterList.Count;
         StartCoroutine(StartSpawning());
     }
 
@@ -177,7 +187,9 @@ public class TrainManager : MonoBehaviour
             yield return new WaitForSeconds(wait);
         }
 
-        sporen = encounterQueue.Dequeue();
+        if (encounterList.Count <= 0) yield break;
+        sporen = encounterList[0];
+        encounterList.RemoveAt(0);
 
         if (sporen.TryGetComponent<Enemy>(out Enemy e))
         {
