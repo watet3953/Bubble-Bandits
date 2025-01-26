@@ -1068,6 +1068,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tHealth: 0
   bSupply: 0
+  maxTHealth: 100
   deck: []
   cardPrefabs:
   - {fileID: 746771496912337575, guid: a5afa531e2dbcb444ada0b67aba62cec, type: 3}
@@ -1831,9 +1832,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 890092325}
-        m_TargetAssemblyTypeName: COOL, Assembly-CSharp
-        m_MethodName: SETTINGOPEN
+      - m_Target: {fileID: 277391113}
+        m_TargetAssemblyTypeName: TitleScreen, Assembly-CSharp
+        m_MethodName: StartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

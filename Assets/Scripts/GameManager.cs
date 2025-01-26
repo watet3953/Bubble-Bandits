@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
 
     public int tHealth; //Train Health
     public int bSupply; //Bubble Wrap Supply
-    private int maxTHealth = 100; //The maxBSupply and maxTHealth are the same number
+    public int maxTHealth = 100; //The maxBSupply and maxTHealth are the same number
 
     public List<GameObject> deck;
     public GameObject[] cardPrefabs;
