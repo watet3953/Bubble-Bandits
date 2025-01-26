@@ -70,6 +70,7 @@ public class MapManager : MonoBehaviour
         if (GameManager.Instance == null)
             Debug.LogError("YOU NEED A GAME MANAGER IN THE SCENE DUMBASS, GO TO THE MAIN MENU.");
         GameManager.Instance.SwapToSceneWithCall("Train Scene", () => TrainManager.Instance.StartRound(data.enemies));
+        GameManager.Instance.SetUpEncounter();
     }
 
     public void FakeRound(MapButton data)

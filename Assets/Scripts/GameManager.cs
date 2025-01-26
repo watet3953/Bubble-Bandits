@@ -106,13 +106,26 @@ public class GameManager : MonoBehaviour
     }
 
 
-    IEnumerator StartSpawning()
+    IEnumerator StartSpawning(float wait = 0.1f, float less = 0.1f)
     {
+        GameObject sporen;
+        float timeLimit = UnityEngine.Random.Range(3,9);
 
+        while (timeLimit > 0)
+        {
+            timeLimit -= less;
+            yield return new WaitForSeconds(wait);
+        }
 
+        sporen = encounterQueue.Dequeue();
 
+        if (sporen.TryGetComponent<Enemy>(out Enemy e))
+        {
+            e.s = true;
+        }
 
-        yield return null;
+        StartCoroutine(StartSpawning());
+
     }
 
 

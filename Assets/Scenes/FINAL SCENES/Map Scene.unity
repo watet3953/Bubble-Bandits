@@ -50953,6 +50953,22 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4022919517461318255, guid: 32de599507643774ba10ff1c4a765fe6, type: 3}
+      propertyPath: enemies.Array.data[0]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4022919517461318255, guid: 32de599507643774ba10ff1c4a765fe6, type: 3}
+      propertyPath: enemies.Array.data[1]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4022919517461318255, guid: 32de599507643774ba10ff1c4a765fe6, type: 3}
+      propertyPath: enemies.Array.data[2]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4022919517461318255, guid: 32de599507643774ba10ff1c4a765fe6, type: 3}
+      propertyPath: enemies.Array.data[3]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4022919517461318255, guid: 32de599507643774ba10ff1c4a765fe6, type: 3}
       propertyPath: unlocks.Array.data[0]
       value: 
       objectReference: {fileID: 1573029899}

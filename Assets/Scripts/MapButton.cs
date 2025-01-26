@@ -37,6 +37,7 @@ public class MapButton : MonoBehaviour
 
     public void StartRound()
     {
+        GameManager.Instance.encounter = enemies;
         MapManager.Instance.StartRound(this);
     }
 
