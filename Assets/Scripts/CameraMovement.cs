@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Versioning;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -36,6 +37,25 @@ public class CameraMovement : MonoBehaviour
 
     private void Update()
     {
+
+        if(target == 3)
+        {
+            Right.interactable = false;
+        }
+        else
+        {
+            Right.interactable= true;
+        }
+
+        if(target == 0)
+        {
+            Left.interactable = false;
+        }
+        else
+        {
+            Left.interactable= true;
+        }
+
         //Need to check the rooms next to the current one.
         //If there is an enemy in the room, then it will show the exclamation icon.
 
