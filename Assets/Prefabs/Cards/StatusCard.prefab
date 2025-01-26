@@ -51,6 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17176b4e13710f64c890a93fd0868fb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hand: {fileID: 0}
   currentState: 1
   abilityCooldown: 2
   exhaustCooldown: 1
@@ -86,7 +87,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -5586868638402047604, guid: 6330b44d1e35b8e4a8cd0f5ac68bcf60, type: 3}
+  m_Sprite: {fileID: 3849473440642531243, guid: f7ae9f8fcb2d2b14d98af818cccdb3d0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -166,3 +167,4 @@ MonoBehaviour:
   effectRadius: {fileID: 2950176165453377231}
   status: 0
   statusDuration: 2
+  slowMultiplier: 2

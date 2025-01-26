@@ -110,34 +110,6 @@ public class Enemy : MonoBehaviour
                 Debug.Log("Damage Dealt");
                 TrainManager.Instance.tHealth -= tDamage;
             }
-
-            //if(dest == null && hasP)//first point.
-            //{
-            //    if(startRoom == 0)
-            //    {
-            //        startRoom++;
-            //        hasP = TrainManager.Instance.checkForPlayer(startRoom);
-            //    }
-            //    else if(startRoom == 1)
-            //    {
-            //        startRoom--;
-            //        hasP = TrainManager.Instance.checkForPlayer(startRoom);
-            //    }
-            //    if (!hasP)
-            //    {
-            //        dest = TrainManager.Instance.findOpenSpot(startRoom);
-            //        gameObject.transform.position = dest.transform.position;
-            //        dest.e = gameObject;
-            //        dest.occupied = true;
-            //    }
-            //}
-            //else if(dest == null && !hasP)
-            //{
-            //    dest = TrainManager.Instance.findOpenSpot(startRoom);
-            //    gameObject.transform.position = dest.transform.position;
-            //    dest.e = gameObject;
-            //    dest.occupied = true;
-            //}
         }
 
         if(startRoom == bRoom)

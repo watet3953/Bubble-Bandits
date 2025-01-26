@@ -25,12 +25,16 @@ public class GameManager : MonoBehaviour
 
     int curSceneIndex = 0;
 
-
+    public int tHealth; //Train Health
+    public int bSupply; //Bubble Wrap Supply
+    private int maxTHealth = 100; //The maxBSupply and maxTHealth are the same number
 
 
     public void Start()
     {
         curSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        tHealth = maxTHealth;
+        bSupply = maxTHealth;
     }
 
     public void SwapToSceneWithCall(string sn, Action call) => StartCoroutine(SwapToSceneInternal(sn, call));
