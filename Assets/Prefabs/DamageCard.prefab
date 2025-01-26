@@ -54,7 +54,8 @@ MonoBehaviour:
   currentState: 1
   abilityCooldown: 2
   exhaustCooldown: 1
-  abilities: []
+  abilities:
+  - {fileID: 1699601831799486165}
 --- !u!114 &1699601831799486165
 MonoBehaviour:
   m_ObjectHideFlags: 0

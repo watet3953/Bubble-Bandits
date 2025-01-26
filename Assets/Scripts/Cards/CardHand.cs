@@ -28,9 +28,14 @@ public class CardHand : MonoBehaviour
     {
         for (int i = 0; i < cards.Count; i++)
         {
-            cards[i].transform.SetLocalPositionAndRotation(
-                Vector3.Lerp(cards[i].transform.localPosition, desiredPos[i], 0.1f),
-                Quaternion.RotateTowards(cards[i].transform.localRotation, desiredRot[i], 15f));
+            if (((cards[i].transform.localPosition - desiredPos[i]).magnitude > 1f) &&
+                cards[i].GetComponent<Card>().currentState != Card.CardStates.Dragged)
+            {
+                cards[i].transform.SetLocalPositionAndRotation(
+                    Vector3.Lerp(cards[i].transform.localPosition, desiredPos[i], 0.1f),
+                    Quaternion.RotateTowards(cards[i].transform.localRotation, desiredRot[i], 15f));
+
+            }
         }
     }
 
@@ -58,12 +63,12 @@ public class CardHand : MonoBehaviour
 
         float cardSpacing = 1.0f / maxHandSize;
         float firstCardPos = 0.5f - (cards.Count - 2) * cardSpacing / 2;
-        print("First Card Pos:" + firstCardPos);
+        //print("First Card Pos:" + firstCardPos);
         Spline spline = sc.Spline; // fake error, just pretend it's not real :)
         for (int i = 0; i < cards.Count; i++)
         {
             float cardPos = firstCardPos + i * cardSpacing;
-            print(cardPos);
+            //print(cardPos);
             Vector3 splinePos = spline.EvaluatePosition(cardPos);
             Vector3 forward = spline.EvaluateTangent(cardPos);
             Vector3 up = spline.EvaluateUpVector(cardPos);
