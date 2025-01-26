@@ -51,7 +51,6 @@ MonoBehaviour:
   - {fileID: 746771496912337575, guid: 734d46ed06106e9479bd60d0b9129565, type: 3}
   - {fileID: 746771496912337575, guid: a5afa531e2dbcb444ada0b67aba62cec, type: 3}
   - {fileID: 746771496912337575, guid: 3b4af88fb817902449569b04818897a3, type: 3}
-  - {fileID: 746771496912337575, guid: d93c2e87557034848a7eae9cdbd594e5, type: 3}
   cards: []
   badCards: []
   sc: {fileID: 7417388375704009946}

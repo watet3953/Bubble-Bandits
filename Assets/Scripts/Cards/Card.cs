@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class Card : MonoBehaviour
 {
@@ -29,6 +30,7 @@ public class Card : MonoBehaviour
 
     private void Start()
     {
+        es = FindFirstObjectByType<EventSystem>();
         transform.parent.TryGetComponent<CardHand>(out hand);
     }
 
@@ -38,6 +40,7 @@ public class Card : MonoBehaviour
 
         if (mouseOn)
         {
+            transform.position = new Vector3(transform.position.x, transform.position.y, -5);
             if (Input.GetMouseButtonDown(0))
             {
                 currentState = CardStates.Dragged;
@@ -49,6 +52,9 @@ public class Card : MonoBehaviour
                 mouseOn = false;
                 UseAbility();
             }
+        } else
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, 0);
         }
 
         if (currentState == CardStates.Dragged && Input.GetMouseButton(0))
@@ -68,10 +74,15 @@ public class Card : MonoBehaviour
         }
     }
 
+    private EventSystem es;
+
     private bool PointInside(Vector2 point)
     {
-        return point.x >= (transform.position.x - 50) && point.x <= (transform.position.x + 50)
-            && point.y >= (transform.position.y - 75) && point.y <= (transform.position.y + 75);
+        PointerEventData ped = new PointerEventData(es);
+        ped.position = point;
+        List<RaycastResult> results = new List<RaycastResult>();
+        GetComponentInParent<GraphicRaycaster>().Raycast(ped, results);
+        return (results.Count > 0 && results[0].gameObject == gameObject);
     }
 
     /// <summary>

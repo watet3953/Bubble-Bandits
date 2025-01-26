@@ -29,12 +29,35 @@ public class GameManager : MonoBehaviour
     public int bSupply; //Bubble Wrap Supply
     private int maxTHealth = 100; //The maxBSupply and maxTHealth are the same number
 
+    public List<GameObject> deck;
+    public GameObject[] cardPrefabs;
+    public int startingDeckSize;
+
 
     public void Start()
     {
         curSceneIndex = SceneManager.GetActiveScene().buildIndex;
         tHealth = maxTHealth;
         bSupply = maxTHealth;
+
+        BuildNewDeck();
+    }
+
+    public void BuildNewDeck()
+    {
+        deck = new List<GameObject>();
+        for (int i = 0; i < startingDeckSize; i++)
+        {
+            deck.Add(cardPrefabs[UnityEngine.Random.Range(0, cardPrefabs.Length)]);
+        }
+
+    }
+
+    public GameObject GetCardFromDeck()
+    {
+        int rand = UnityEngine.Random.Range(0, deck.Count - 1);
+        print(rand + " " + deck.Count);
+        return deck[rand];
     }
 
     public void SwapToSceneWithCall(string sn, Action call) => StartCoroutine(SwapToSceneInternal(sn, call));

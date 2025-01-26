@@ -5,12 +5,13 @@ using UnityEngine.Splines; // this guy is real
 
 public class CardHand : MonoBehaviour
 {
-    public GameObject[] cardPrefabs;
     public List<GameObject> cards;
     [SerializeField] public GameObject[] badCards;
-    private List<Vector3> desiredPos = new();
+    private List<Vector2> desiredPos = new();
     private List<Quaternion> desiredRot = new();
     public SplineContainer sc; // also fake error
+
+    public bool isDeck = false;
 
     public int maxHandSize;
 
@@ -19,6 +20,16 @@ public class CardHand : MonoBehaviour
     {
         cards = new List<GameObject>();
         
+        if (isDeck )
+        {
+            maxHandSize = GameManager.Instance.deck.Count;
+            foreach (GameObject card in GameManager.Instance.deck)
+            {
+                AddCard(card);
+            }
+            return;
+        }
+
         if (badCards.Length == 0)
         {
             RefillCards();
@@ -40,11 +51,13 @@ public class CardHand : MonoBehaviour
         {
             for (int i = 0; i < cards.Count; i++)
             {
-                if (((cards[i].transform.localPosition - desiredPos[i]).magnitude > 1f) &&
+                Vector2 value = new Vector2(cards[i].transform.localPosition.x, cards[i].transform.localPosition.y);
+                if (((value - desiredPos[i]).magnitude > 1f) &&
                     cards[i].GetComponent<Card>().currentState != Card.CardStates.Dragged)
                 {
+                    Vector2 shit = Vector2.Lerp(value, desiredPos[i], 0.1f);
                     cards[i].transform.SetLocalPositionAndRotation(
-                        Vector3.Lerp(cards[i].transform.localPosition, desiredPos[i], 0.1f),
+                        new Vector3(shit.x, shit.y, cards[i].transform.localPosition.z),
                         Quaternion.RotateTowards(cards[i].transform.localRotation, desiredRot[i], 15f));
 
                 }
@@ -61,7 +74,7 @@ public class CardHand : MonoBehaviour
         GameObject card = Instantiate(badcard, transform);
         card.transform.SetParent(transform, true);
         cards.Add(card);
-        desiredPos.Add(card.transform.position);
+        desiredPos.Add((Vector2)card.transform.position);
         desiredRot.Add(card.transform.rotation);
         UpdateCardPos();
     }
@@ -89,7 +102,7 @@ public class CardHand : MonoBehaviour
             Vector3 forward = spline.EvaluateTangent(cardPos);
             Vector3 up = spline.EvaluateUpVector(cardPos);
             Quaternion rotation = Quaternion.LookRotation(up, Vector3.Cross(up, forward).normalized);
-            desiredPos[i] = splinePos;
+            desiredPos[i] = (Vector2)splinePos;
             desiredRot[i] = rotation;
         }
     }
@@ -115,7 +128,7 @@ public class CardHand : MonoBehaviour
 
         for (int i = 0; i < maxHandSize; i++)
         {
-            AddCard(cardPrefabs[Random.Range(0, cardPrefabs.Length)]);
+            AddCard(GameManager.Instance.GetCardFromDeck());
         }
     }
 }
