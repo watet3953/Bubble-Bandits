@@ -94,6 +94,12 @@ public class CameraMovement : MonoBehaviour
 
     private void CheckLeft()
     {
+
+        if (target == 0)
+        {
+            leftWarn.SetActive(false);
+        }
+
         //look at car too the left
         foreach(EnemyPoint e in rooms[target - 1].enemyPoints)
         {
@@ -111,6 +117,11 @@ public class CameraMovement : MonoBehaviour
 
     private void CheckRight()
     {
+
+        if (target == rooms.Length -1)
+        {
+            rightWarn.SetActive(false);
+        }
         foreach (EnemyPoint e in rooms[target + 1].enemyPoints)
         {
             if (e.occupied)
