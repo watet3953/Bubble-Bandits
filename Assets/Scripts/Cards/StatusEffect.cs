@@ -11,9 +11,10 @@ public class StatusEffect : CardAbility
         Weak,
         Frail
     }
-
+    
     [SerializeField] private EffectType status; // effect type of the card
     [SerializeField] private float statusDuration = 2.0f;    // how long the effect lasts
+    [SerializeField] private int slowMultiplier = 2;
     private List<Enemy> enemies = new();
 
     public override void Activate()
@@ -41,18 +42,26 @@ public class StatusEffect : CardAbility
     private IEnumerator InitiateStatus()
     {
         cardMain.gameObject.GetComponent<Image>().enabled = false;
-        switch (status)
-        {
-            case EffectType.Slow:
-                // slow enemy
-                break;
-            case EffectType.Weak:
-                // reduce enemy damage
-                break;
-            case EffectType.Frail:
-                // reduce enemy defence
-                break;
-        }
+        bool affected = false;
+
+        if (!affected)
+            switch (status)
+            {
+                case EffectType.Slow:
+                    // slow enemy
+                    foreach (Enemy enemy in enemies)
+                        enemy.SlowDown(slowMultiplier);
+                    affected = true;
+                    break;
+                case EffectType.Weak:
+                    // reduce enemy damage
+                    affected = true;
+                    break;
+                case EffectType.Frail:
+                    // reduce enemy defence
+                    affected = true;
+                    break;
+            }
         yield return new WaitForSeconds(statusDuration);
         effectRadius.enabled = false;
         cardMain.currentState = Card.CardStates.Discarded;

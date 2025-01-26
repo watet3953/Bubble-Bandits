@@ -21,7 +21,7 @@ public class DealDamage : CardAbility
         if (enemies.Count > 0)
         {
             foreach (Enemy enemy in enemies)
-                enemy.takeDamage(damage);
+                enemy.TakeDamage(damage);
             cardMain.currentState = Card.CardStates.Discarded;
             cardMain.gameObject.SetActive(false);
         }

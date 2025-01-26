@@ -163,9 +163,14 @@ public class Enemy : MonoBehaviour
     }
 
 
-    public void takeDamage(int d)
+    public void TakeDamage(int damage)
     {
-        health -= d;
+        health -= damage;
     }
 
+    public void SlowDown(int slowMultiplier)
+    {
+        maxTime *= slowMultiplier;
+        timeLimit = maxTime;
+    }
 }
