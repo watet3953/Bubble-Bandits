@@ -25,20 +25,41 @@ public class MapManager : MonoBehaviour
     private MapButton curRound = null;
     public MapButton[] startingEncounters;
 
+    private Vector3 moveTo;
+    public Transform initialMoveToTarget;
+    public Camera camera;
+
+    public Transform MapButtons;
+
     public void Start()
     {
-        foreach(Transform t in transform)
+        foreach(Transform t in MapButtons)
         {
-            if (t.TryGetComponent<Button>(out Button button))
+            if (t.TryGetComponent<MapButton>(out MapButton button))
             {
-                button.interactable = false;
+                button.enabled = false;
             }
         }
         foreach(MapButton b in startingEncounters)
         {
-            b.GetComponent<Button>().interactable = true;
+            b.enabled = true;
         }
+        SetCameraTarget(initialMoveToTarget.position);
             
+    }
+
+    private void SetCameraTarget(Vector3 target)
+    {
+        moveTo = target += new Vector3(0, 0, -10);
+    }
+
+    public void Update()
+    {
+        if ((camera.transform.position - moveTo).magnitude > 1f)
+        {
+            camera.transform.position = Vector3.Lerp(camera.transform.position, moveTo, 0.1f);
+
+        }
     }
 
     public void StartRound(MapButton data)
@@ -46,21 +67,36 @@ public class MapManager : MonoBehaviour
         curRound = data;
         // do shit that hides the UI.
         // reset the player.
+        if (GameManager.Instance == null)
+            Debug.LogError("YOU NEED A GAME MANAGER IN THE SCENE DUMBASS, GO TO THE MAIN MENU.");
         GameManager.Instance.SwapToSceneWithCall("Train Scene", () => TrainManager.Instance.StartRound(data.enemies));
+    }
+
+    public void FakeRound(MapButton data)
+    {
+        curRound = data;
+        EndRound();
     }
 
     public void EndRound()
     {
+        print("Round Ended");
         // open the UI again
+        Vector3 working_pos = Vector3.zero;
+        int numNodes = 0;
         foreach (MapButton toLoad in curRound.unlocks)
         {
-            toLoad.GetComponent<Button>().interactable = true;
+            if (curRound.locks.Contains(toLoad)) continue;
+            toLoad.enabled = true;
+            working_pos += toLoad.transform.position;
+            numNodes++;
         }
         foreach (MapButton toLoad in curRound.locks)
         {
-            toLoad.GetComponent<Button>().interactable = false;
+            toLoad.enabled = false;
         }
-        curRound.GetComponent<Button>().enabled = false;
+        working_pos /= numNodes;
+        SetCameraTarget(working_pos);
         curRound.enabled = false;
         curRound = null;
     }

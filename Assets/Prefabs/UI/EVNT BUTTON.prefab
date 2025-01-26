@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 651388352271269282}
-  - component: {fileID: 4022919517461318255}
+  - component: {fileID: 59087071915973058}
   - component: {fileID: 8758070735205804912}
   - component: {fileID: 3305850184001478807}
   m_Layer: 5
-  m_Name: FITE BUTTON
+  m_Name: EVNT BUTTON
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34,7 +34,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4022919517461318255
+--- !u!114 &59087071915973058
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -46,14 +46,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa6ccc38abd9ed644aa072033407db6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemies: 04000000040000000400000004000000
+  enemies: 
   unlocks: []
   locks: []
   baseColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
   hoverColor: {r: 1, g: 1, b: 1, a: 1}
   pressedColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
   disabledColor: {r: 0, g: 0, b: 0, a: 1}
-  isEncounter: 1
+  isEncounter: 0
 --- !u!212 &8758070735205804912
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -95,7 +95,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 2778410138807212416, guid: 39cf6421991ab2d43a56377efc7aba32, type: 3}
+  m_Sprite: {fileID: -7533163494337409834, guid: 39cf6421991ab2d43a56377efc7aba32, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
