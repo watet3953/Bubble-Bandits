@@ -16,7 +16,7 @@ public class CameraMovement : MonoBehaviour
 
     private int target = 3;
 
-    int speed = 5;
+    int speed = 8;
 
     [SerializeField] private TrainCar[] rooms;
     [SerializeField] private GameObject leftWarn;

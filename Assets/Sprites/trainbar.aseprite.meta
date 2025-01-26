@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a7f3d4ff83516f74388924bfaa3e16e9
+guid: 428276fe6f076bc4484b0df65b642dc9
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -121,18 +121,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: train
+  - name: trainbar
     originalName: 
-    pivot: {x: 0.5, y: -0.10526316}
+    pivot: {x: 0.5, y: -0.11111111}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 112
-      height: 57
-    spriteID: 95f750c95a7302d40ae39b583fdc8008
+      width: 128
+      height: 54
+    spriteID: fdb611661e5d5ea418dc81e0d0c56eda
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -144,25 +144,25 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -1601684348
-    name: train
+    guid: 38606241
+    name: trainbar
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: train
+    - name: trainbar
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
         x: 0
         y: 6
-        width: 112
-        height: 57
-      spriteId: 95f750c95a7302d40ae39b583fdc8008
+        width: 128
+        height: 54
+      spriteId: fdb611661e5d5ea418dc81e0d0c56eda
     linkedCells: []
     parentIndex: -1
   platformSettings: []
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 112, y: 64}
+  canvasSize: {x: 128, y: 64}
