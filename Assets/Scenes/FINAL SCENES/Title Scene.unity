@@ -1077,7 +1077,7 @@ MonoBehaviour:
   - {fileID: 746771496912337575, guid: 630cab3dfbf002f47b15359cd7b0b9c5, type: 3}
   - {fileID: 746771496912337575, guid: ef51e8d77a24c86438f1fd62a023b39e, type: 3}
   - {fileID: 746771496912337575, guid: 734d46ed06106e9479bd60d0b9129565, type: 3}
-  startingDeckSize: 52
+  startingDeckSize: 10
 --- !u!4 &1019077923
 Transform:
   m_ObjectHideFlags: 0
