@@ -22,7 +22,7 @@ public class Enemy : MonoBehaviour
 
     EnemyPoint dest;
 
-    [SerializeField] bool s = false;
+    public bool s = false;
     bool sw = false;
 
     // Start is called before the first frame update
