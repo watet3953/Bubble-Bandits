@@ -9,6 +9,8 @@ public class MapButton : MonoBehaviour
     [SerializeField] public int[] enemies;
     /// <summary> Other buttons that are unlocked upon beating this button. </summary>
     [SerializeField] public MapButton[] unlocks;
+    /// <summary> Ones that get locked out when you pick this one. </summary>
+    [SerializeField] public MapButton[] locks;
 
     public void StartRound()
     {
