@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5671909738019775994}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -49,9 +49,9 @@ MonoBehaviour:
   cards: []
   badCards:
   - {fileID: 746771496912337575, guid: ef51e8d77a24c86438f1fd62a023b39e, type: 3}
+  - {fileID: 746771496912337575, guid: 630cab3dfbf002f47b15359cd7b0b9c5, type: 3}
   - {fileID: 746771496912337575, guid: ef51e8d77a24c86438f1fd62a023b39e, type: 3}
-  - {fileID: 746771496912337575, guid: ef51e8d77a24c86438f1fd62a023b39e, type: 3}
-  - {fileID: 746771496912337575, guid: ef51e8d77a24c86438f1fd62a023b39e, type: 3}
+  - {fileID: 746771496912337575, guid: 630cab3dfbf002f47b15359cd7b0b9c5, type: 3}
   - {fileID: 746771496912337575, guid: ef51e8d77a24c86438f1fd62a023b39e, type: 3}
   sc: {fileID: 7417388375704009946}
   maxHandSize: 5
@@ -84,27 +84,27 @@ MonoBehaviour:
   - m_EditModeType: 1
     m_Knots:
     - Position:
-        x: -440
-        y: 0
+        x: -245.5
+        y: 480.5
         z: 0
       TangentIn:
         x: 0
         y: 0
-        z: -489.9491
+        z: 0
       TangentOut:
         x: 0
         y: 0
-        z: 489.9491
+        z: 0
       Rotation:
         value:
-          x: 0.5954865
-          y: -0.38130805
-          z: 0.38131192
-          w: -0.595484
+          x: 0.7069021
+          y: -0.017012995
+          z: 0.017013049
+          w: -0.7069021
     - Position:
-        x: 440
-        y: 0
-        z: 0
+        x: 292.5
+        y: 482.5
+        z: -105
       TangentIn:
         x: 0
         y: 0
@@ -115,12 +115,12 @@ MonoBehaviour:
         z: 0
       Rotation:
         value:
-          x: -0.01701283
-          y: -0.7069021
-          z: 0.7069021
-          w: 0.017012775
+          x: 0.6158417
+          y: 0.23525482
+          z: -0.34748417
+          w: -0.66682005
     m_MetaData:
-    - Mode: 2
+    - Mode: 1
       Tension: 0.5
     - Mode: 1
       Tension: 0.5
