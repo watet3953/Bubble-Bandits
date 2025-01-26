@@ -51372,6 +51372,7 @@ GameObject:
   - component: {fileID: 2063496720}
   - component: {fileID: 2063496719}
   - component: {fileID: 2063496718}
+  - component: {fileID: 2063496724}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -51489,6 +51490,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deckScreen: {fileID: 6390212757834427935}
+--- !u!114 &2063496724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063496717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c5ca7750b42e714a92d8a930964c75b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &2108948874077514391 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5061185670749471168, guid: e05239226977b894aa9950346642d839, type: 3}

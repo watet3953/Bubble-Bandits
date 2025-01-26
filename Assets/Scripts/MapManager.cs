@@ -84,7 +84,7 @@ public class MapManager : MonoBehaviour
         int i = UnityEngine.Random.Range(0, events.Length);
 
         
-        SceneManager.GetSceneByName("Map Scene").GetRootGameObjects()[1].transform.Find("Event" + i).gameObject.SetActive(true);
+        MapCanvas.Instance.transform.Find("Event" + i).gameObject.SetActive(true);
 
 
         EndRound();
