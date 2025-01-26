@@ -46,7 +46,7 @@ public class MapManager : MonoBehaviour
         curRound = data;
         // do shit that hides the UI.
         // reset the player.
-        TrainManager.Instance.StartRound(data.enemies);
+        GameManager.Instance.SwapToSceneWithCall("Train Scene", () => TrainManager.Instance.StartRound(data.enemies));
     }
 
     public void EndRound()
