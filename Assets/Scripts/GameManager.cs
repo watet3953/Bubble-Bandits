@@ -25,8 +25,11 @@ public class GameManager : MonoBehaviour
 
     int curSceneIndex = 0;
 
-    public int tHealth { get => tHealth; set => tHealth = Mathf.Clamp(value, 0, maxTHealth); } //Train Health
-    public int bSupply { get => bSupply; set => bSupply = Mathf.Clamp(value, 0, maxTHealth); } //Bubble Wrap Supply
+    private int tHealth;  //Train Health
+    private int bSupply;
+    public int THealth { get => tHealth; set => tHealth = tHealth = Mathf.Clamp(value, 0, maxTHealth); }
+    public int BSupply { get => bSupply; set => bSupply = Mathf.Clamp(value, 0, maxTHealth); }
+
     public int maxTHealth = 100; //The maxBSupply and maxTHealth are the same number
 
     public List<GameObject> deck;
@@ -37,8 +40,8 @@ public class GameManager : MonoBehaviour
     public void Start()
     {
         curSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        tHealth = maxTHealth;
-        bSupply = maxTHealth;
+        THealth = maxTHealth;
+        BSupply = maxTHealth;
 
         BuildNewDeck();
     }
@@ -90,7 +93,7 @@ public class GameManager : MonoBehaviour
 
     public void Heal(int h)
     {
-        tHealth += h;
+        THealth += h;
     }
 
 }

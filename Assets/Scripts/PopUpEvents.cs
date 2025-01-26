@@ -12,21 +12,21 @@ public class PopUpEvents : MonoBehaviour
 
     public void healTrain(int h)
     {
-        GameManager.Instance.tHealth += h;
+        GameManager.Instance.THealth += h;
     }
     public void DamageTrain(int d)
     {
-        GameManager.Instance.tHealth -= d;
+        GameManager.Instance.THealth -= d;
     }
 
     public void ReSupply(int s) 
     {
-        GameManager.Instance.bSupply += s;
+        GameManager.Instance.BSupply += s;
     }
 
     public void LoseSupply(int l)
     {
-        GameManager.Instance.bSupply -= l;
+        GameManager.Instance.BSupply -= l;
     }
 
 

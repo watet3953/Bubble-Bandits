@@ -11,6 +11,6 @@ public class TrainBubbles : MonoBehaviour
 
     void Update()
     {
-        thing.fillAmount = (float)GameManager.Instance.bSupply / (float)GameManager.Instance.maxTHealth;
+        thing.fillAmount = (float)GameManager.Instance.BSupply / (float)GameManager.Instance.maxTHealth;
     }
 }

@@ -1066,8 +1066,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc7a7c354ca4de549b84862e276d3d15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tHealth: 0
-  bSupply: 0
   maxTHealth: 100
   deck: []
   cardPrefabs:

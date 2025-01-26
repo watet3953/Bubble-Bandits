@@ -11,6 +11,6 @@ public class TrainHealth : MonoBehaviour
 
     void Update()
     {
-        thing.fillAmount = (float)GameManager.Instance.tHealth / (float)GameManager.Instance.maxTHealth;
+        thing.fillAmount = (float)GameManager.Instance.THealth / (float)GameManager.Instance.maxTHealth;
     }
 }
