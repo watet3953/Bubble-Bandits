@@ -1,6 +1,8 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -23,6 +25,11 @@ public class GameManager : MonoBehaviour
 
     int curSceneIndex = 0;
 
+    Vector3 pos = new Vector3(20,20,0);
+
+    [SerializeField] public int[] encounter;
+    public Queue<GameObject> encounterQueue = new Queue<GameObject>();
+
     public void Start()
     {
         curSceneIndex = SceneManager.GetActiveScene().buildIndex;
@@ -40,6 +47,73 @@ public class GameManager : MonoBehaviour
             yield return SceneManager.UnloadSceneAsync(curSceneIndex);
         curSceneIndex = SceneManager.GetSceneByName(sn).buildIndex;
         if (call != null) call.Invoke();
+        SetUpEncounter();
     }
+
+    public void SetUpEncounter()
+    {
+        //Set up a queue that will randomly add the different enemies.
+        int total = 0;
+
+        foreach (int i in encounter)
+        {
+            total += i;
+        }
+
+        //Now it has to add the enemies to a queue by randomly choosing one of the ints in encounter.
+        //depending on the int it will bring in a certain prefab to the queue and decrease the num by 1.
+        //if the int is 0, then it will keep grabbing a new random number until it gets one.
+        //When the length of the queue is the same as total, then it will stop.
+        int rand;
+        while (encounterQueue.Count < total)
+        {
+            rand = UnityEngine.Random.Range(0, encounter.Length);
+
+            while (encounter[rand] == 0)
+            {
+                rand = UnityEngine.Random.Range(0, encounter.Length);
+            }
+
+            //If it is NOT empty, get one of the enemies.
+            switch (rand)
+            {
+                case 0:
+                    encounterQueue.Enqueue(Resources.Load("Enemies/Spiky joe") as GameObject);
+                    encounter[rand]--;
+                    break;
+                case 1:
+                    encounterQueue.Enqueue(Resources.Load("Enemies/Prickle Pete") as GameObject);
+                    encounter[rand]--;
+                    break;
+                case 2:
+                    encounterQueue.Enqueue(Resources.Load("Enemies/Gil") as GameObject);
+                    encounter[rand]--;
+                    break;
+                case 3:
+                    encounterQueue.Enqueue(Resources.Load("Enemies/Sgt. Stab") as GameObject);
+                    encounter[rand]--;
+                    break;
+            }
+        }
+        foreach(GameObject g in encounterQueue)
+        {
+            Instantiate(g, pos, Quaternion.identity);
+            //g.transform.position = pos;
+            pos.z += 1;
+            g.SetActive(true);
+        }
+        StartCoroutine(StartSpawning());
+    }
+
+
+    IEnumerator StartSpawning()
+    {
+
+
+
+
+        yield return null;
+    }
+
 
 }
