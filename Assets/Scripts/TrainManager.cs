@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
+using static UnityEditor.PlayerSettings;
 
 public class TrainManager : MonoBehaviour
 {
@@ -14,6 +16,10 @@ public class TrainManager : MonoBehaviour
     //Forgive me for a bad kind of coding here :)
     [SerializeField] private TrainCar[] trainCars;
 
+    [SerializeField] public int[] encounter;
+    public Queue<GameObject> encounterQueue = new Queue<GameObject>();
+
+    [SerializeField] private Transform pos;
 
     #region Singleton
     public static TrainManager Instance;
@@ -81,12 +87,92 @@ public class TrainManager : MonoBehaviour
     public void StartRound(int[] enemyCount)
     {
         // make sure to reset the train-side stuff like player, also probably reset the hand.
+        encounter = enemyCount;
+        SetUpEncounter();
     }
 
 
     public void EndEncounter()
     {
         GameManager.Instance.SwapToSceneWithCall("Map Scene", () => MapManager.Instance.EndRound());
+
+    }
+
+
+
+    public void SetUpEncounter()
+    {
+        //Set up a queue that will randomly add the different enemies.
+        int total = 0;
+
+        foreach (int i in encounter)
+        {
+            total += i;
+        }
+
+        //Now it has to add the enemies to a queue by randomly choosing one of the ints in encounter.
+        //depending on the int it will bring in a certain prefab to the queue and decrease the num by 1.
+        //if the int is 0, then it will keep grabbing a new random number until it gets one.
+        //When the length of the queue is the same as total, then it will stop.
+        int rand;
+        while (encounterQueue.Count < total)
+        {
+            rand = UnityEngine.Random.Range(0, encounter.Length);
+
+            while (encounter[rand] == 0)
+            {
+                rand = UnityEngine.Random.Range(0, encounter.Length);
+            }
+
+            //If it is NOT empty, get one of the enemies.
+            switch (rand)
+            {
+                case 0:
+                    encounterQueue.Enqueue(Instantiate(Resources.Load("Enemies/Spiky joe") as GameObject, pos));
+                    encounter[rand]--;
+                    break;
+                case 1:
+                    encounterQueue.Enqueue(Instantiate(Resources.Load("Enemies/Prickle Pete") as GameObject, pos));
+                    encounter[rand]--;
+                    break;
+                case 2:
+                    encounterQueue.Enqueue(Instantiate(Resources.Load("Enemies/Gil") as GameObject, pos));
+                    encounter[rand]--;
+                    break;
+                case 3:
+                    encounterQueue.Enqueue(Instantiate(Resources.Load("Enemies/Sgt. Stab") as GameObject, pos));
+                    encounter[rand]--;
+                    break;
+            }
+        }
+        foreach (GameObject g in encounterQueue)
+        {
+            g.SetActive(true);
+        }
+        StartCoroutine(StartSpawning());
+    }
+
+
+    IEnumerator StartSpawning(float wait = 0.1f, float less = 0.1f)
+    {
+        GameObject sporen;
+        float timeLimit = UnityEngine.Random.Range(3, 9);
+
+        while (timeLimit > 0)
+        {
+            timeLimit -= less;
+            yield return new WaitForSeconds(wait);
+        }
+
+        sporen = encounterQueue.Dequeue();
+
+        if (sporen.TryGetComponent<Enemy>(out Enemy e))
+        {
+            print("fuck");
+            e.s = true;
+        }
+
+        StartCoroutine(StartSpawning());
 
     }
 
