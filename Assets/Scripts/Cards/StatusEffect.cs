@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StatusEffect : CardAbility
 {
@@ -27,13 +28,19 @@ public class StatusEffect : CardAbility
         }
 
         if (enemies.Count > 0)
+        {
             StartCoroutine(InitiateStatus());
+        }
         else
+        {
             cardMain.currentState = Card.CardStates.Werk;
+            cardMain.ResetRadius();
+        }
     }
 
     private IEnumerator InitiateStatus()
     {
+        cardMain.gameObject.GetComponent<Image>().enabled = false;
         switch (status)
         {
             case EffectType.Slow:
@@ -49,6 +56,8 @@ public class StatusEffect : CardAbility
         yield return new WaitForSeconds(statusDuration);
         effectRadius.enabled = false;
         cardMain.currentState = Card.CardStates.Discarded;
+        cardMain.ResetRadius();
+        cardMain.gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)

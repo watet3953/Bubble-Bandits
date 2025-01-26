@@ -23,11 +23,14 @@ public class DealDamage : CardAbility
             foreach (Enemy enemy in enemies)
                 enemy.takeDamage(damage);
             cardMain.currentState = Card.CardStates.Discarded;
+            cardMain.gameObject.SetActive(false);
         }
         else
         {
             cardMain.currentState = Card.CardStates.Werk;
         }
+
+        cardMain.ResetRadius();
     }
 
     private void OnTriggerEnter(Collider other)

@@ -19,6 +19,8 @@ public class Card : MonoBehaviour
     public float abilityCooldown = 2.0f;  // cooldown placed on other cards after ability
     public float exhaustCooldown = 1.0f;  // cooldown placed on other cards after exhaust
     private int trainHealthInc = 5;
+
+    [SerializeField] int layerMask = 3;
     private bool mouseOn = false;
     public Vector2 castPosition = Vector2.zero;
 
@@ -53,7 +55,7 @@ public class Card : MonoBehaviour
 
             RaycastHit hit;
 
-            if (Physics.Raycast(newRay, out hit))
+            if (Physics.Raycast(newRay, out hit, Mathf.Infinity, ~layerMask))
             {
                 castPosition = hit.point;
                 foreach (CardAbility ability in abilities)
@@ -87,6 +89,15 @@ public class Card : MonoBehaviour
         currentState = CardStates.InEffect;
         TrainManager.Instance.tHealth += trainHealthInc;
         currentState = CardStates.Discarded;
+    }
+
+    /// <summary>
+    /// Reset the position of the effect radius.
+    /// </summary>
+    public void ResetRadius()
+    {
+        foreach (CardAbility ability in abilities)
+            ability.transform.position = transform.position;
     }
 }
 

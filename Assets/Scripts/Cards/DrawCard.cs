@@ -12,5 +12,6 @@ public class DrawCard : CardAbility
         // draw card
 
         cardMain.currentState = Card.CardStates.Discarded;
+        cardMain.gameObject.SetActive(false);
     }
 }

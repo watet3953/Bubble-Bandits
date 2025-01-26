@@ -12,5 +12,6 @@ public class SpawnObject : CardAbility
             Instantiate(obj, cardMain.transform.position, Quaternion.identity);
 
         cardMain.currentState = Card.CardStates.Discarded;
+        cardMain.gameObject.SetActive(false);
     }
 }
