@@ -6,7 +6,7 @@ using UnityEngine.Splines; // this guy is real
 public class CardHand : MonoBehaviour
 {
     public GameObject[] cardPrefabs;
-    [HideInInspector] public List<GameObject> cards;
+    public List<GameObject> cards;
     [SerializeField] public GameObject[] badCards;
     private List<Vector3> desiredPos = new();
     private List<Quaternion> desiredRot = new();
@@ -115,8 +115,7 @@ public class CardHand : MonoBehaviour
 
         for (int i = 0; i < maxHandSize; i++)
         {
-            GameObject newCard = Instantiate(cardPrefabs[Random.Range(0, cardPrefabs.Length)], transform);
-            cards.Add(newCard);
+            AddCard(cardPrefabs[Random.Range(0, cardPrefabs.Length)]);
         }
     }
 }

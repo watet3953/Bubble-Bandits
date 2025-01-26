@@ -281,6 +281,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gil
       objectReference: {fileID: 0}
+    - target: {fileID: 4239360568024071334, guid: f582954d40b07e64da505b3896de5f42, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9119598511316341645, guid: f582954d40b07e64da505b3896de5f42, type: 3}
       propertyPath: m_LocalPosition.x
       value: -11
@@ -1387,6 +1391,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sgt. Stab
       objectReference: {fileID: 0}
+    - target: {fileID: 1337259640990871100, guid: f40201532e444af4bb217dcb9a1add25, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5305513428827351902, guid: f40201532e444af4bb217dcb9a1add25, type: 3}
       propertyPath: s
       value: 1
@@ -1612,6 +1620,10 @@ PrefabInstance:
     - target: {fileID: 3854003831089088160, guid: 0c355c1bb1cb8424b8bf63239c2b55e4, type: 3}
       propertyPath: m_Name
       value: Spiky joe
+      objectReference: {fileID: 0}
+    - target: {fileID: 3854003831089088160, guid: 0c355c1bb1cb8424b8bf63239c2b55e4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7377687614786274040, guid: 0c355c1bb1cb8424b8bf63239c2b55e4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4329,6 +4341,10 @@ PrefabInstance:
     - target: {fileID: 9103615191204480011, guid: 9bcac442a7889d745acf0207607bc02e, type: 3}
       propertyPath: m_Name
       value: Prickle Pete
+      objectReference: {fileID: 0}
+    - target: {fileID: 9103615191204480011, guid: 9bcac442a7889d745acf0207607bc02e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
