@@ -17,8 +17,10 @@ public class TrainManager : MonoBehaviour
 
     [SerializeField] public int[] encounter;
     public Queue<GameObject> encounterQueue = new Queue<GameObject>();
+    public Queue<GameObject> dead = new Queue<GameObject>();
 
     [SerializeField] private Transform pos;
+    private int total;
 
 
 
@@ -43,10 +45,12 @@ public class TrainManager : MonoBehaviour
 
     private void Update()
     {
-        if(encounterQueue.Count == 0)
+
+        if(dead.Count == total && total > 0)
         {
             EndEncounter();
         }
+
     }
 
 
@@ -157,6 +161,7 @@ public class TrainManager : MonoBehaviour
         {
             g.SetActive(true);
         }
+        total = encounterQueue.Count;
         StartCoroutine(StartSpawning());
     }
 

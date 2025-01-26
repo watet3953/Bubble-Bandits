@@ -88,6 +88,9 @@ public class GameManager : MonoBehaviour
     }
 
 
-
+    public void Heal(int h)
+    {
+        tHealth += h;
+    }
 
 }

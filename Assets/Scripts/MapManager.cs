@@ -32,6 +32,8 @@ public class MapManager : MonoBehaviour
 
     public Transform MapButtons;
 
+    [SerializeField] private GameObject[] events;
+
     public void Start()
     {
         foreach(Transform t in MapButtons)
@@ -77,6 +79,12 @@ public class MapManager : MonoBehaviour
     public void FakeRound(MapButton data)
     {
         curRound = data;
+
+        int i = UnityEngine.Random.Range(0, events.Length);
+
+        events[i].gameObject.SetActive(true);
+
+
         EndRound();
     }
 

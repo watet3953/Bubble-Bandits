@@ -45,6 +45,7 @@ public class Enemy : MonoBehaviour
 
         if(health <= 0)
         {
+            TrainManager.Instance.dead.Enqueue(this.gameObject);
             Destroy(gameObject);
         }
     }
@@ -129,6 +130,7 @@ public class Enemy : MonoBehaviour
         else
         {
             Debug.Log("Bubble Bandit had Left");
+            TrainManager.Instance.dead.Enqueue(this.gameObject);
             gameObject.SetActive(false);
         }
         
