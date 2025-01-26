@@ -91,7 +91,7 @@ public class Card : MonoBehaviour
     public void ExhaustCard()
     {
         currentState = CardStates.InEffect;
-        TrainManager.Instance.tHealth += trainHealthInc;
+        GameManager.Instance.tHealth += trainHealthInc;
         currentState = CardStates.Discarded;
     }
 

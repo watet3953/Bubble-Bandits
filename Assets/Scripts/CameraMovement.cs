@@ -25,6 +25,10 @@ public class CameraMovement : MonoBehaviour
 
     private bool isMoving = false;
 
+    [SerializeField] private CardHand had;
+    private bool d = true; //can draw or no?
+    [SerializeField] private GameObject t;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -69,6 +73,23 @@ public class CameraMovement : MonoBehaviour
         if (target < rooms.Length - 1) {
             CheckRight();
         }
+
+
+        if(target == rooms.Length - 1 && d)
+        {
+            t.gameObject.SetActive(true);
+
+            StartCoroutine(Timer());
+            
+        }
+
+        if (target < rooms.Length-1 && !d)
+        {
+            d = true;
+
+        }
+
+
     }
 
     private void CheckLeft()
@@ -139,7 +160,19 @@ public class CameraMovement : MonoBehaviour
         }
     }
 
+    IEnumerator Timer(float wait = 0.1f, float time = 3f)
+    {
+        while(time > 0)
+        {
+            time -= wait;
+            yield return new WaitForSeconds(wait);
+        }
+        d = false;
+        had.RefillCards();
+        t.gameObject.SetActive(false);
+        StopCoroutine(Timer());
 
+    }
 
     IEnumerator MoveCam(int t)
     {
