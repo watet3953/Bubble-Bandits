@@ -15,7 +15,6 @@ public class Card : MonoBehaviour
         Discarded
     }
 
-    [SerializeField] GameObject sphere;
     public CardStates currentState = CardStates.Werk;
     public float abilityCooldown = 2.0f;  // cooldown placed on other cards after ability
     public float exhaustCooldown = 1.0f;  // cooldown placed on other cards after exhaust
@@ -29,7 +28,7 @@ public class Card : MonoBehaviour
     {
         mouseOn = PointInside(Input.mousePosition);
 
-        //print(currentState);
+        print(currentState);
 
         if (mouseOn)
         {
@@ -59,8 +58,6 @@ public class Card : MonoBehaviour
                 castPosition = hit.point;
                 foreach (CardAbility ability in abilities)
                     ability.transform.position = castPosition;
-                sphere.transform.position = castPosition;
-                //print(castPosition);
             }
         }
     }
@@ -97,7 +94,7 @@ public class CardAbility : MonoBehaviour
 {
     [SerializeField] protected Card cardMain;
     protected Vector2 effectPosition;
-    [SerializeField] protected Collider effectRadius;
+    [SerializeField] protected SphereCollider effectRadius;
 
     protected virtual void Start()
     {

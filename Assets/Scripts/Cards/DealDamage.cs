@@ -10,23 +10,24 @@ public class DealDamage : CardAbility
     public override void Activate()
     {
         base.Activate();
-
-        //print(Physics.OverlapSphere(transform.position, 5));
         
-        foreach (Collider collider in Physics.OverlapSphere(transform.position, 5))
+        foreach (Collider collider in Physics.OverlapSphere(transform.position, effectRadius.radius))
         {
             print(collider);
             if (collider.TryGetComponent<Enemy>(out Enemy newEnemy))
                 enemies.Add(collider.GetComponent<Enemy>());
         }
-        //print(enemies);
 
-        foreach (Enemy enemy in enemies)
+        if (enemies.Count > 0)
         {
-            enemy.takeDamage(damage);
+            foreach (Enemy enemy in enemies)
+                enemy.takeDamage(damage);
+            cardMain.currentState = Card.CardStates.Discarded;
         }
-
-        cardMain.currentState = Card.CardStates.Discarded;
+        else
+        {
+            cardMain.currentState = Card.CardStates.Werk;
+        }
     }
 
     private void OnTriggerEnter(Collider other)

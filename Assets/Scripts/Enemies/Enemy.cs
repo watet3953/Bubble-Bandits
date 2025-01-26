@@ -45,7 +45,7 @@ public class Enemy : MonoBehaviour
 
         if(health <= 0)
         {
-            GameObject.Destroy(this);
+            Destroy(gameObject);
         }
     }
 

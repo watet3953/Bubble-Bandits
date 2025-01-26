@@ -13,13 +13,23 @@ public class StatusEffect : CardAbility
 
     [SerializeField] private EffectType status; // effect type of the card
     [SerializeField] private float statusDuration = 2.0f;    // how long the effect lasts
-    private List<Enemy> enemies;
+    private List<Enemy> enemies = new();
 
     public override void Activate()
     {
         base.Activate();
 
-        StartCoroutine(InitiateStatus());
+        foreach (Collider collider in Physics.OverlapSphere(transform.position, effectRadius.radius))
+        {
+            print(collider);
+            if (collider.TryGetComponent<Enemy>(out Enemy newEnemy))
+                enemies.Add(collider.GetComponent<Enemy>());
+        }
+
+        if (enemies.Count > 0)
+            StartCoroutine(InitiateStatus());
+        else
+            cardMain.currentState = Card.CardStates.Werk;
     }
 
     private IEnumerator InitiateStatus()
