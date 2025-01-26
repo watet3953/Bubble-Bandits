@@ -14,9 +14,10 @@ public class MapManager : MonoBehaviour
     {
         if (Instance != null)
         {
-            Debug.LogError("Two copies of MapManager");
-            Destroy(this);
-        }
+            Debug.LogWarning("Two copies of MapManager");
+            Destroy(gameObject);
+            return;
+        } 
         Instance = this;
         DontDestroyOnLoad(this);
     }
@@ -69,6 +70,7 @@ public class MapManager : MonoBehaviour
         // reset the player.
         if (GameManager.Instance == null)
             Debug.LogError("YOU NEED A GAME MANAGER IN THE SCENE DUMBASS, GO TO THE MAIN MENU.");
+        foreach (Transform b in MapButtons) b.gameObject.SetActive(false);
         GameManager.Instance.SwapToSceneWithCall("Train Scene", () => TrainManager.Instance.StartRound(data.enemies));
     }
 
@@ -81,9 +83,12 @@ public class MapManager : MonoBehaviour
     public void EndRound()
     {
         print("Round Ended");
+        camera = GameObject.Find("Main Camera").GetComponent<Camera>();
         // open the UI again
         Vector3 working_pos = Vector3.zero;
         int numNodes = 0;
+        foreach (Transform b in MapButtons.GetComponentsInChildren(typeof(Transform), true)) 
+            b.gameObject.SetActive(true);
         foreach (MapButton toLoad in curRound.unlocks)
         {
             if (curRound.locks.Contains(toLoad)) continue;
@@ -91,13 +96,12 @@ public class MapManager : MonoBehaviour
             working_pos += toLoad.transform.position;
             numNodes++;
         }
-        foreach (MapButton toLoad in curRound.locks)
-        {
-            toLoad.enabled = false;
-        }
+        foreach (MapButton toLoad in curRound.locks) 
+            toLoad.enabled = false; 
         working_pos /= numNodes;
         SetCameraTarget(working_pos);
         curRound.enabled = false;
+        curRound.GetComponent<SpriteRenderer>().color = Color.white;
         curRound = null;
     }
 
