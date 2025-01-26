@@ -36,8 +36,6 @@ public class Card : MonoBehaviour
     {
         mouseOn = PointInside(Input.mousePosition);
 
-        print(currentState);
-
         if (mouseOn)
         {
             if (Input.GetMouseButtonDown(0))
