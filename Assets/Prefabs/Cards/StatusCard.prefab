@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 528240471842860684}
   - component: {fileID: 4159346520047952842}
+  - component: {fileID: 3981862120303221450}
   - component: {fileID: 8207645566059102104}
   - component: {fileID: 3379339547169604421}
   m_Layer: 5
@@ -59,6 +60,20 @@ MonoBehaviour:
   castPosition: {x: 0, y: 0}
   abilities:
   - {fileID: 4268289098147108119}
+--- !u!114 &3981862120303221450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 746771496912337575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 996aa1397ccaedf49a431503f6b657de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardMain: {fileID: 4159346520047952842}
+  effectRadius: {fileID: 2950176165453377231}
 --- !u!222 &8207645566059102104
 CanvasRenderer:
   m_ObjectHideFlags: 0

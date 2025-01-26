@@ -108,15 +108,15 @@ public class Enemy : MonoBehaviour
 
                 //Deal Damage
                 Debug.Log("Damage Dealt");
-                TrainManager.Instance.tHealth -= tDamage;
+                GameManager.Instance.tHealth -= tDamage;
             }
         }
 
         if(startRoom == bRoom)
         {
             Debug.Log("Deal Bubble Damage");
-            TrainManager.Instance.tHealth -= tDamage;
-            TrainManager.Instance.bSupply -= bDamage;
+            GameManager.Instance.tHealth -= tDamage;
+            GameManager.Instance.bSupply -= bDamage;
             bubbleDamageDealt += bDamage;
         }
 
