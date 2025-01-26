@@ -23,6 +23,8 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] private GameObject leftWarn;
     [SerializeField] private GameObject rightWarn;
 
+    private bool isMoving = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -106,24 +108,35 @@ public class CameraMovement : MonoBehaviour
 
     public void MoveLeft()
     {
-        pPoints[target].occupied = false;
-        target--;
-        player.transform.position = pPoints[target].transform.position;
-        pPoints[target].occupied = true;
-        Left.interactable = false;
-        Right.interactable = false;
-        StartCoroutine(MoveCam(target));
+
+
+        if (!isMoving)
+        {
+            isMoving = true;
+            pPoints[target].occupied = false;
+            target--;
+            player.transform.position = pPoints[target].transform.position;
+            pPoints[target].occupied = true;
+            Left.interactable = false;
+            Right.interactable = false;
+            StartCoroutine(MoveCam(target));
+        }
     }
 
     public void MoveRight()
     {
-        pPoints[target].occupied = false;
-        target++;
-        player.transform.position = pPoints[target].transform.position;
-        pPoints[target].occupied = true;
-        Left.interactable = false;
-        Right.interactable = false;
-        StartCoroutine(MoveCam(target));
+
+        if (!isMoving)
+        {
+            isMoving = true;
+            pPoints[target].occupied = false;
+            target++;
+            player.transform.position = pPoints[target].transform.position;
+            pPoints[target].occupied = true;
+            Left.interactable = false;
+            Right.interactable = false;
+            StartCoroutine(MoveCam(target));
+        }
     }
 
 
@@ -138,7 +151,7 @@ public class CameraMovement : MonoBehaviour
         }
         Left.interactable = true;
         Right.interactable = true;
-
+        isMoving = false;
     }
 
 }
