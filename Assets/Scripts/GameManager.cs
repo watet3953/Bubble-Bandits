@@ -25,8 +25,8 @@ public class GameManager : MonoBehaviour
 
     int curSceneIndex = 0;
 
-    public int tHealth; //Train Health
-    public int bSupply; //Bubble Wrap Supply
+    public int tHealth { get => tHealth; set => tHealth = Mathf.Clamp(value, 0, maxTHealth); } //Train Health
+    public int bSupply { get => bSupply; set => bSupply = Mathf.Clamp(value, 0, maxTHealth); } //Bubble Wrap Supply
     public int maxTHealth = 100; //The maxBSupply and maxTHealth are the same number
 
     public List<GameObject> deck;

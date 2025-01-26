@@ -68,7 +68,10 @@ public class PopUpEvents : MonoBehaviour
 
     public void Close()
     {
-        this.gameObject.SetActive(false);
+        a.SetActive(false);
+        b.SetActive(false);
+        c.SetActive(false);
+        gameObject.SetActive(false);
     }
 
 }
